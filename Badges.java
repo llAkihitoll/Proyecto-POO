@@ -3,19 +3,16 @@ import java.util.List;
 
 public class Badges {
     private List<String> recompensas;
+
+    public Badges() {
+        this.recompensas = new ArrayList<>();
     }
 
-    
-    public void getRecompensas() {
-        return recompensas;  
+    public List<String> getRecompensas() {
+        return recompensas;
     }
 
-    agregarRecompensa(String recompensa) {
-        recompensas.add(recompensa);  
-
-
-    public static void mostrarRecompensas() {
-        for (String recompensa : recompensas) {  
-        }
+    public void agregarRecompensa(String recompensa) {
+        recompensas.add(recompensa);
     }
 }
