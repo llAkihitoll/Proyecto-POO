@@ -2,9 +2,10 @@ public class Aplicacion {
     Usuario usuarioactual;
     Horario horario;
     Pomodoro pomodoro;
+    Tarea nuevatarea;
 
     public Aplicacion(){
-
+        usuarioactual = new Usuario();
     }
 
     public void IniciarPomodoro(){
@@ -16,8 +17,13 @@ public class Aplicacion {
 
     }
 
-    public void AddTarea(){
-
+    public void AddTarea(String nombreTarea, int prioridad,  double duracion, String detalles){
+        nuevatarea = new Tarea();
+        nuevatarea.setNombreTarea(nombreTarea);
+        nuevatarea.setPrioridad(prioridad);
+        nuevatarea.setDuracion(duracion);
+        nuevatarea.setDetalles(detalles);
+        usuarioactual.getTareas().add(nuevatarea);
     }
 
     public void ReiniciarPomodoro(){
