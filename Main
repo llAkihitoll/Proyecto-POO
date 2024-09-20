@@ -7,5 +7,17 @@ public class Main {
         System.out.println("Bienvenido a la aplicación de gestión de tareas.");
         System.out.print("Ingrese su nombre de usuario: ");
         String nombreUsuario = scanner.nextLine();
+
+        Aplicacion app = new Aplicacion(nombreUsuario);
+
+        while (true){
+            System.out.println("\nOpciones:");
+            System.out.println("1. Agregar tarea");
+            System.out.println("2. Marcar tarea como completada");
+            System.out.println("3. Mostrar horario");
+            System.out.println("4. Iniciar Pomodoro");
+            System.out.println("5. Verificar recompensas");
+            System.out.println("6. Mostrar recompensas");
+            System.out.println("7. Salir");
     }
 }
