@@ -49,15 +49,30 @@ public class Aplicacion {
     }
 
     public void ReiniciarPomodoro(){
-
+        IniciarPomodoro(pomodoro.getIntervaloTrabajo());
+        IniciarDescanso(pomodoro.getIntervaloDescanso());
     }
 
-    public void MarcarCompletado(){
-
+    public void MarcarCompletado(String nombredetarea){
+        String nom = nombredetarea.toLowerCase();
+        for(Tarea i : usuarioactual.getTareas()){
+            String nom1 = i.getNombreTarea().toLowerCase();
+            if(nom1.equals(nom)){
+                i.setCompletado(true);
+            }
+        }
     }
 
-    public String obtenerDetalles(){
-
+    public String obtenerDetalles(String nombredetarea){
+        String mensaje = "";
+        String nom = nombredetarea.toLowerCase();
+        for(Tarea i : usuarioactual.getTareas()){
+            String nom1 = i.getNombreTarea().toLowerCase();
+            if(nom1.equals(nom)){
+                mensaje = i.getDetalles();
+            }
+        }
+        return mensaje;
     }
 
     public Horario MostrarHorario(){
