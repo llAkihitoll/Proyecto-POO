@@ -1,22 +1,23 @@
-
+// Pomodoro.java
 public class Pomodoro {
     private int intervaloTrabajo;
     private int intervaloDescanso;
 
-    public Pomodoro(int intervaloTrabajo, int intervaloDescansoo) {
+    public Pomodoro(int intervaloTrabajo, int intervaloDescanso) {
         this.intervaloTrabajo = intervaloTrabajo;
-        this.intervaloDescanso = intervaloDescanso; 
+        this.intervaloDescanso = intervaloDescanso;
     }
+
     public Pomodoro() {
-        this(25, "5"); 
+        this(25, 5);
     }
 
-    public String getIntervaloTrabajo() {
-        return intervaloTrabajo; 
+    public int getIntervaloTrabajo() {
+        return intervaloTrabajo;
     }
 
-    public void setIntervaloTrabajo(String intervaloTrabajo) {
-        this.intervaloTrabajo = intervaloTrabajo; 
+    public void setIntervaloTrabajo(int intervaloTrabajo) {
+        this.intervaloTrabajo = intervaloTrabajo;
     }
 
     public int getIntervaloDescanso() {
@@ -25,6 +26,5 @@ public class Pomodoro {
 
     public void setIntervaloDescanso(int intervaloDescanso) {
         this.intervaloDescanso = intervaloDescanso;
-    
-    } 
+    }
 }
