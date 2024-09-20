@@ -8,9 +8,20 @@ public class Aplicacion {
         usuarioactual = new Usuario();
     }
 
-    public void IniciarPomodoro(){
+    public String IniciarPomodoro(int intervaloTrabajo){
+        String mensaje = "";
         pomodoro = new Pomodoro();
+        pomodoro.setIntervaloTrabajo(intervaloTrabajo);
+        long minutosNano = intervaloTrabajo * 60 * 1_000_000_000L;
+        long inicio = System.nanoTime();
+        long fin = inicio + minutosNano;
 
+        while (System.nanoTime() < fin) {
+            mensaje = "El pomodoro esta en marcha";
+        }
+        
+        mensaje = "El pomodoro ha terminado";
+        return mensaje;
     }
 
     public void IniciarDescanso(){
