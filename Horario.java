@@ -1,12 +1,26 @@
-public class Horario {
-    private List<Tarea> listaTareas;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
-    public Horario(List<Tarea> listaTareas) {
+/**
+ * La clase Horario gestiona una lista de tareas del usuario.
+ */
+public class Horario {
+    private ArrayList<Tarea> listaTareas;
+
+    /**
+     * Constructor que inicializa el horario con una lista de tareas.
+     * 
+     * @param listaTareas Lista de tareas proporcionada.
+     */
+    public Horario(ArrayList<Tarea> listaTareas) {
         this.listaTareas = listaTareas;
     }
 
-    // Constructor por defecto
-    public Horario() {
-        this.listaTareas = new ArrayList<>();
+    /**
+     * Ordena la lista de tareas según la prioridad (de menor a mayor).
+     */
+    public void tareasPrioritarias() {
+        Collections.sort(listaTareas, Comparator.comparingInt(Tarea::getPrioridad));
     }
 }
