@@ -1,4 +1,3 @@
-// Pomodoro.java
 public class Pomodoro {
     private int intervaloTrabajo;
     private int intervaloDescanso;
@@ -27,4 +26,13 @@ public class Pomodoro {
     public void setIntervaloDescanso(int intervaloDescanso) {
         this.intervaloDescanso = intervaloDescanso;
     }
+
+    public void iniciarPomodoro() {
+        System.out.println("Pomodoro iniciado. Trabaja por " + intervaloTrabajo + " minutos.");
+    }
+
+    public void iniciarDescanso() {
+        System.out.println("Descanso iniciado. Descansa por " + intervaloDescanso + " minutos.");
+    }
 }
+
