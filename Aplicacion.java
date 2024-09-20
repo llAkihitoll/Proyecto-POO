@@ -1,6 +1,9 @@
 public class Aplicacion {
-    private Usuario usuarioactual;
-    private Horario horario;
+    /**
+     * Atributos utilizados para el controlador del programa
+     */
+    private Usuario usuarioactual; //se utilizará para crear un nuevo usuario
+    private Horario horario; //se utilizará para generar un nuevo horario según las tareas pendientes
     private Pomodoro pomodoro;
     private Tarea nuevatarea;
     static private Badges nuevarecompensa;
@@ -85,21 +88,21 @@ public class Aplicacion {
     public Horario MostrarHorario(){
         for(Tarea i : usuarioactual.getTareas()){
             int cond = i.getPrioridad();
-            if(cond==1){
+            if(cond==1 && (i.getCompletado() == false)){
                 horario.getListaTareas().add(i);
             }
         }
 
         for(Tarea j : usuarioactual.getTareas()){
             int cond = j.getPrioridad();
-            if(cond==2){
+            if(cond==2 && (j.getCompletado() == false)){
                 horario.getListaTareas().add(j);
             }
         }
 
         for(Tarea k : usuarioactual.getTareas()){
             int cond = k.getPrioridad();
-            if(cond==3){
+            if(cond==3 && (k.getCompletado() == false)){
                 horario.getListaTareas().add(k);
             }
         }
