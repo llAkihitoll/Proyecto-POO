@@ -8,7 +8,12 @@ public class Aplicacion {
     public Aplicacion(){
         usuarioactual = new Usuario();
         pomodoro = new Pomodoro();
+        horario = new Horario();
 
+    }
+
+    public void AgregarUsuario(String nombreUsuario){
+        usuarioactual.setNombreUsuario(nombreUsuario);
     }
 
     public String IniciarPomodoro(int intervaloTrabajo){
@@ -78,7 +83,28 @@ public class Aplicacion {
     }
 
     public Horario MostrarHorario(){
+        for(Tarea i : usuarioactual.getTareas()){
+            int cond = i.getPrioridad();
+            if(cond==1){
+                horario.getListaTareas().add(i);
+            }
+        }
 
+        for(Tarea j : usuarioactual.getTareas()){
+            int cond = j.getPrioridad();
+            if(cond==2){
+                horario.getListaTareas().add(j);
+            }
+        }
+
+        for(Tarea k : usuarioactual.getTareas()){
+            int cond = k.getPrioridad();
+            if(cond==3){
+                horario.getListaTareas().add(k);
+            }
+        }
+
+        return horario;
     }
 
     public void VerificarRecompensa(){
