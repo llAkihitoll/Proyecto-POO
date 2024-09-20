@@ -7,6 +7,10 @@ public class Horario {
         this.listaTareas = listaTareas;
     }
 
+    public Horario(){
+        
+    }
+
     public List<Tarea> getListaTareas() {
         return listaTareas;
     }
