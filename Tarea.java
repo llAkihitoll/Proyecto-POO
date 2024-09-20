@@ -20,6 +20,42 @@ public class Tarea {
         this.completado = completado;
         this.detalles = detalles;
     }
+//Set&Get
+    //nombreTarea
+    public void setNombreTarea(String nombreTarea) {
+        this.nombreTarea = nombreTarea;
+    }
+    public String getNombreTarea() {
+        return nombreTarea;
+    }
+    //prioridad
+    public void setPrioridad(int prioridad) {
+        this.prioridad = prioridad;
+    }
+    public int getPrioridad() {
+        return prioridad;
+    }
+    //duracion
+    public void setDuracion(double duracion) {
+        this.duracion = duracion;
+    }
+    public double getDuracion() {
+        return duracion;
+    }
+    //completado
+    public void setCompletado(boolean completado) {
+        this.completado = completado;
+    }
+    public boolean getCompletado(){
+        return completado;
+    }
+    //detalles
+    public void setDetalles(String detalles) {
+        this.detalles = detalles;
+    }
+    public String getDetalles() {
+        return detalles;
+    }
 //metodos
 
 }
