@@ -148,10 +148,10 @@ public class Aplicacion {
     public void VerificarRecompensa(){
 
     }
-
-    public Badges MostrarRecompensa(){
-
+/* arreglar
+    public void MostrarRecompensa(){
+    
     }
-
+*/
 
 }
