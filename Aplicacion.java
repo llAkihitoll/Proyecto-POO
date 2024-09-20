@@ -6,15 +6,15 @@ public class Aplicacion {
 
     public Aplicacion(){
         usuarioactual = new Usuario();
+        pomodoro = new Pomodoro();
     }
 
     public String IniciarPomodoro(int intervaloTrabajo){
         String mensaje = "";
-        pomodoro = new Pomodoro();
         pomodoro.setIntervaloTrabajo(intervaloTrabajo);
-        long minutosNano = intervaloTrabajo * 60 * 1_000_000_000L;
+        long minutosaNano = intervaloTrabajo * 60 * 1_000_000_000L;
         long inicio = System.nanoTime();
-        long fin = inicio + minutosNano;
+        long fin = inicio + minutosaNano;
 
         while (System.nanoTime() < fin) {
             mensaje = "El pomodoro esta en marcha";
@@ -24,8 +24,19 @@ public class Aplicacion {
         return mensaje;
     }
 
-    public void IniciarDescanso(){
+    public String IniciarDescanso(int intervaloDescanso){
+        String mensaje = "";
+        pomodoro.setIntervaloDescanso(intervaloDescanso);
+        long minutosaNano = intervaloDescanso * 60 * 1_000_000_000L;
+        long inicio = System.nanoTime();
+        long fin = inicio + minutosaNano;
 
+        while (System.nanoTime() < fin) {
+            mensaje = "El descanso esta en marcha";
+        }
+        
+        mensaje = "El descanso ha terminado";
+        return mensaje;
     }
 
     public void AddTarea(String nombreTarea, int prioridad,  double duracion, String detalles){
