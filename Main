@@ -37,6 +37,12 @@ public class Main {
                 case "6":
                    
                 case "7":
+                    System.out.println("Gracias por usar nuestra aplicacion ");
+                    System.out.println("Cerrando el programa ... ¡Hasta luego!")
+                    scanner.close();
+                    return;
+            default:
+                    System.out.println("La opcion que usted selecciono no es valida, porfavor intentar de nuevo ");
                     
             }
         }
