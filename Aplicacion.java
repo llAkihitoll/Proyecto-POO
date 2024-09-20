@@ -40,9 +40,9 @@ public class Aplicacion {
 
     }
 
-    public Badeges MostrarRecompensa(){
+    public Badges MostrarRecompensa(){
 
     }
 
-    
+
 }
