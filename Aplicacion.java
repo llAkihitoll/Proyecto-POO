@@ -1,12 +1,14 @@
 public class Aplicacion {
-    Usuario usuarioactual;
-    Horario horario;
-    Pomodoro pomodoro;
-    Tarea nuevatarea;
+    private Usuario usuarioactual;
+    private Horario horario;
+    private Pomodoro pomodoro;
+    private Tarea nuevatarea;
+    static private Badges nuevarecompensa;
 
     public Aplicacion(){
         usuarioactual = new Usuario();
         pomodoro = new Pomodoro();
+
     }
 
     public String IniciarPomodoro(int intervaloTrabajo){
