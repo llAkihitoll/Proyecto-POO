@@ -88,8 +88,8 @@ public class Aplicacion {
     /**
      * Metodo para marcar como completada una tarea
      */
-    public void MarcarCompletado(String nombredetarea){
-        String nom = nombredetarea.toLowerCase();
+    public void MarcarCompletado(String nombreTarea){
+        String nom = nombreTarea.toLowerCase();
         for(Tarea i : usuarioactual.getTareas()){
             String nom1 = i.getNombreTarea().toLowerCase();
             if(nom1.equals(nom)){
@@ -103,9 +103,9 @@ public class Aplicacion {
      * 
      * @return detalles de la tarea 
      */
-    public String obtenerDetalles(String nombredetarea){
+    public String obtenerDetalles(String nombreTarea){
         String mensaje = "";
-        String nom = nombredetarea.toLowerCase();
+        String nom = nombreTarea.toLowerCase();
         for(Tarea i : usuarioactual.getTareas()){
             String nom1 = i.getNombreTarea().toLowerCase();
             if(nom1.equals(nom)){
