@@ -4,10 +4,13 @@ public class Aplicacion {
      */
     private Usuario usuarioactual; //se utilizará para crear un nuevo usuario
     private Horario horario; //se utilizará para generar un nuevo horario según las tareas pendientes
-    private Pomodoro pomodoro;
-    private Tarea nuevatarea;
-    static private Badges nuevarecompensa;
+    private Pomodoro pomodoro; //se utilizará para crear un nuevo pomodoro
+    private Tarea nuevatarea; //se utilizará para crear una nueva tarea
+    //static private Badges nuevarecompensa;
 
+    /**
+     * Metodo "constructor" de la clase, se utilizará para acceder a todos los métodos desde el main
+     */
     public Aplicacion(){
         usuarioactual = new Usuario();
         pomodoro = new Pomodoro();
@@ -15,10 +18,18 @@ public class Aplicacion {
 
     }
 
+    /**
+     * Metodo para crear un nuevo usuario
+     */
     public void AgregarUsuario(String nombreUsuario){
         usuarioactual.setNombreUsuario(nombreUsuario);
     }
 
+    /**
+     * Metodo para iniciar un nuevo pomodoro
+     * 
+     * @return un mensaje que indica cuando ha finalizado el pomodoro
+     */
     public String IniciarPomodoro(int intervaloTrabajo){
         String mensaje = "";
         pomodoro.setIntervaloTrabajo(intervaloTrabajo);
@@ -34,6 +45,11 @@ public class Aplicacion {
         return mensaje;
     }
 
+    /**
+     * Metodo para iniciar un nuevo descanso
+     * 
+     * @return un mensaje que indica cuando ha finalizado el descanso
+     */
     public String IniciarDescanso(int intervaloDescanso){
         String mensaje = "";
         pomodoro.setIntervaloDescanso(intervaloDescanso);
@@ -49,6 +65,9 @@ public class Aplicacion {
         return mensaje;
     }
 
+    /**
+     * Metodo para agregar una tarea
+     */
     public void AddTarea(String nombreTarea, int prioridad,  double duracion, String detalles){
         nuevatarea = new Tarea();
         nuevatarea.setNombreTarea(nombreTarea);
@@ -58,11 +77,17 @@ public class Aplicacion {
         usuarioactual.getTareas().add(nuevatarea);
     }
 
+    /**
+     * Metodo para reiniciar el pomodoro
+     */
     public void ReiniciarPomodoro(){
         IniciarPomodoro(pomodoro.getIntervaloTrabajo());
         IniciarDescanso(pomodoro.getIntervaloDescanso());
     }
 
+    /**
+     * Metodo para marcar como completada una tarea
+     */
     public void MarcarCompletado(String nombredetarea){
         String nom = nombredetarea.toLowerCase();
         for(Tarea i : usuarioactual.getTareas()){
@@ -73,6 +98,11 @@ public class Aplicacion {
         }
     }
 
+    /**
+     * Metodo para obtener detalles de una tarea
+     * 
+     * @return detalles de la tarea 
+     */
     public String obtenerDetalles(String nombredetarea){
         String mensaje = "";
         String nom = nombredetarea.toLowerCase();
@@ -85,6 +115,11 @@ public class Aplicacion {
         return mensaje;
     }
 
+    /**
+     * Metodo para generar un horario a partir de las tareas del usuario
+     * 
+     * @return horario generado
+     */
     public Horario MostrarHorario(){
         for(Tarea i : usuarioactual.getTareas()){
             int cond = i.getPrioridad();
