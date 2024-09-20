@@ -16,12 +16,26 @@ public class Horario {
     }
 
     /**
-     * Muestra la lista de tareas ordenadas según su prioridad.
+     * Actualiza una tarea existente en el horario. Si la tarea no existe, la
+     * agrega a la lista. Luego ordena la lista según la prioridad.
+     * 
+     * @param tareaModificada La tarea que se ha modificado o añadido.
      */
-    public void mostrarHorario() {
-        System.out.println("Horario de tareas:");
+    public void actualizarHorario(Tarea tareaModificada) {
+        boolean tareaActualizada = false;
         for (Tarea tarea : listaTareas) {
-            System.out.println(tarea.getNombre() + " - Prioridad: " + tarea.getPrioridad());
+            if (tarea.getNombre().equals(tareaModificada.getNombre())) {
+                tarea.setPrioridad(tareaModificada.getPrioridad());
+                tarea.setDuracion(tareaModificada.getDuracion());
+                tarea.setCompletado(tareaModificada.isCompletado());
+                tareaActualizada = true;
+            }
         }
+
+        if (!tareaActualizada) {
+            listaTareas.add(tareaModificada); // Añadir si no existe
+        }
+
+        tareasPrioritarias();  // Reordenar las tareas
     }
 }
