@@ -1,5 +1,3 @@
-import java.util.List;
-
 public class Horario {
     private List<Tarea> listaTareas;
 
@@ -7,11 +5,8 @@ public class Horario {
         this.listaTareas = listaTareas;
     }
 
-    public List<Tarea> getListaTareas() {
-        return listaTareas;
-    }
-
-    public void setListaTareas(List<Tarea> listaTareas) {
-        this.listaTareas = listaTareas;
+    // Constructor por defecto
+    public Horario() {
+        this.listaTareas = new ArrayList<>();
     }
 }
