@@ -8,6 +8,15 @@ public class Usuario {
     private ArrayList<Tarea>tareas; //Lista de longitud indefinida con las tareas asignadas.
     private ArrayList<Badges>badges; //Lista de longitud indefinida con los badges del usuario.
     
+//Constructor por defecto
+public Usuario() {
+    this.nombreUsuario = "";
+    this.rachaDeDias = 0;
+    this.tareas = new ArrayList<>();
+    this.badges = new ArrayList<>();
+}
+
+
 //constructor para usuarios
     public Usuario(String nombreUsuario, int rachaDeDias) {
         this.nombreUsuario = nombreUsuario;

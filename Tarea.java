@@ -10,7 +10,18 @@ public class Tarea {
     private double duracion;        //la duracion de la tarea en minutos
     private boolean completado;     //Si es verdadero la tarea está completada, si es falso no está completada
     private String detalles;        //Descripción o comentarios sobre la tarea.
-    
+
+//Constructor por defecto
+public Tarea() {
+
+    this.nombreTarea = "";
+    this.prioridad = 0;
+    this.duracion = 0.0;
+    this.completado = false;
+    this.detalles = "";
+}
+
+
 //Constructor para Tarea
     public Tarea(String nombreTarea, int prioridad,  double duracion, boolean completado, String detalles) {
 
