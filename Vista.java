@@ -1,5 +1,6 @@
 import javax.swing.*;
 public class Vista {
+    private JButton boton;
     //ejemplo basico de un gui utilizando swing
     //probando con herencia, habría que poner public class Vista extends JFrame
 
@@ -22,6 +23,13 @@ public class Vista {
         frame.pack();
         frame.setVisible(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        //se crea un nuevo boton, este dirá hola y por el momento no hará nada
+        boton = new JButton("hola");
+        //se agregá el botón a la ventana
+        frame.add(boton);
+        //se establece el tamaño de la ventana
+        frame.setSize(200, 200);
     }
 
     public static void main(String[] args) {
