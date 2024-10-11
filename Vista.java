@@ -8,26 +8,30 @@ public class Vista  extends JFrame{
         setVisible(true);
         //setSize(500, 200);
 
-        JPanel dias = new JPanel();
-        dias.setLayout(new GridLayout(4, 7));
-        for(int i = 0; i<28; i++){
-            JButton botondia = new JButton("Día " + (i+1));
-            dias.add(botondia);
-        }
+       // JPanel dias = new JPanel();
+       // dias.setLayout(new GridLayout(4, 7));
+       // for(int i = 0; i<28; i++){
+       //     JButton botondia = new JButton("Día " + (i+1));
+        //    dias.add(botondia);
+       // }
 
         //dias.setSize(250, 230);
-        add(dias,BorderLayout.WEST);
+        //add(dias,BorderLayout.CENTER);
 
+        JPanel medalla = new JPanel();
+        JButton medallas = new JButton("Medallas");
+        medalla.add(medallas);
+
+        String[] pruebalista = {"hola", "soy", "rodrigo"} ;
         JPanel lista = new JPanel();
-        JList<Tarea> tareas = new JList<>();
-        lista.add(tareas);
-
+        JList<String> tareas = new JList<>(pruebalista);
+        lista.add(tareas, BorderLayout.NORTH);
+        lista.add(medallas, BorderLayout.CENTER);
         add(lista, BorderLayout.EAST);
 
-        JPanel medallas = new JPanel();
-        medallas.add(new JButton("Ver medallas"));
-        add(medallas, BorderLayout.EAST);
-        medallas.setSize(200, 200);
+        
+
+        
 
     }
 

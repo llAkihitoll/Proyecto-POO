@@ -31,12 +31,7 @@ public class Tarea {
      * Crea una tarea sin nombre, prioridad, duracion ni detalles, que no está completada.
      */
     public Tarea() {
-    
-        this.nombreTarea = "";
-        this.prioridad = 0;
-        this.duracion = 0.0;
-        this.completado = false;
-        this.detalles = "";
+
     }
     /**
      * Crea una tarea con nombre, prioridad, duracion, estado y detalles
@@ -46,14 +41,15 @@ public class Tarea {
      * @param completado
      * @param detalles
      */
-        public Tarea(String nombreTarea, int prioridad,  double duracion, boolean completado, String detalles) {
+        public Tarea(String nombreTarea, int prioridad,  double duracion, String detalles) {
     
             this.nombreTarea = nombreTarea;
             this.prioridad = prioridad;
             this.duracion = duracion;
-            this.completado = completado;
+            this.completado = false;
             this.detalles = detalles;
         }
+
     //Set&Get
     /**
      * Establece el nombre de la tarea
