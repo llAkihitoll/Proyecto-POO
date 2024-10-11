@@ -1,35 +1,34 @@
+import java.awt.*;
 import javax.swing.*;
-public class Vista {
-    private JButton boton;
-    //ejemplo basico de un gui utilizando swing
-    //probando con herencia, habría que poner public class Vista extends JFrame
-
-    //public Vista(){
-    //    super("Ejemplo 1");
-        //titulo con el que aparecerá la ventana
-
-    //    setVisible(true);
-    //    setDefaultCloseOperation(EXIT_ON_CLOSE);
-        //se establece que se vea la ventana y que cuando esta se cierre se terminé el programa
-
-    //}
-
-
-    //forma 2 de realizar la ventana, esta vez sin herencia
+public class Vista  extends JFrame{
     public Vista(){
-        JFrame frame = new JFrame("Ejemplo 2");
-        
-        //en este caso hay que referirse al objeto para extablecer los componentes
-        frame.pack();
-        frame.setVisible(true);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setTitle("App manejo del tiempo");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLayout(new BorderLayout());
+        setVisible(true);
+        //setSize(500, 200);
 
-        //se crea un nuevo boton, este dirá hola y por el momento no hará nada
-        boton = new JButton("hola");
-        //se agregá el botón a la ventana
-        frame.add(boton);
-        //se establece el tamaño de la ventana
-        frame.setSize(200, 200);
+        JPanel dias = new JPanel();
+        dias.setLayout(new GridLayout(4, 7));
+        for(int i = 0; i<28; i++){
+            JButton botondia = new JButton("Día " + (i+1));
+            dias.add(botondia);
+        }
+
+        //dias.setSize(250, 230);
+        add(dias,BorderLayout.WEST);
+
+        JPanel lista = new JPanel();
+        JList<Tarea> tareas = new JList<>();
+        lista.add(tareas);
+
+        add(lista, BorderLayout.EAST);
+
+        JPanel medallas = new JPanel();
+        medallas.add(new JButton("Ver medallas"));
+        add(medallas, BorderLayout.EAST);
+        medallas.setSize(200, 200);
+
     }
 
     public static void main(String[] args) {
