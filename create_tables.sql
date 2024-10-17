@@ -35,4 +35,14 @@ CREATE TABLE pomodoro (
     fecha_inicio DATETIME NOT NULL,     -- Fecha y hora de inicio de la sesion
     FOREIGN KEY (id_tarea) REFERENCES tareas(id) ON DELETE CASCADE
 );
-
+/*
+Tabla para almacenar los horarios que los usuarios tienen asignados.
+*/
+CREATE TABLE horarios (
+    id INT AUTO_INCREMENT PRIMARY KEY,  -- Identificador unico para cada horario
+    id_usuario INT NOT NULL,            
+    dia_semana ENUM('Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo') NOT NULL,
+    hora_inicio TIME NOT NULL,          -- Hora de inicio del horario
+    hora_fin TIME NOT NULL,             -- Hora de fin del horario
+    FOREIGN KEY (id_usuario) REFERENCES usuarios(id) ON DELETE CASCADE
+);
