@@ -18,6 +18,14 @@ public class Horario {
     public Horario() {
         this.listaTareas = new ArrayList<>();
     }
+    /**
+     * Constructor que inicializa el horario con una lista de tareas dada.
+     * 
+     * @param listaTareas Lista de tareas para el horario.
+     */
+    public Horario(List<Tarea> listaTareas) {
+        this.listaTareas = listaTareas;
+    }
 
     
 }
