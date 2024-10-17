@@ -46,3 +46,11 @@ CREATE TABLE horarios (
     hora_fin TIME NOT NULL,             -- Hora de fin del horario
     FOREIGN KEY (id_usuario) REFERENCES usuarios(id) ON DELETE CASCADE
 );
+/*
+Tabla para almacenar los badges que se pueden obtener.
+*/
+CREATE TABLE badges (
+    id INT AUTO_INCREMENT PRIMARY KEY,  -- Identificador unico para cada badge
+    nombre VARCHAR(255) NOT NULL,       -- Nombre del badge
+    descripcion TEXT NOT NULL           -- Descripcion del badge
+);
