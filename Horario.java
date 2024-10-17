@@ -78,6 +78,18 @@ public class Horario {
             }
         }
     }
+    public void generarHorario(Usuario usuario) {
+        listaTareas.clear();
+
+        for (Tarea tarea : usuario.getTareas()) {
+            if (!tarea.getCompletado()) {
+                listaTareas.add(tarea);
+            }
+        }
+
+        // Ordenar la lista de tareas por prioridad (1 más alta, 3 más baja)
+        listaTareas.sort((tarea1, tarea2) -> Integer.compare(tarea1.getPrioridad(), tarea2.getPrioridad()));
+    }
 
 }
 
