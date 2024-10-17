@@ -62,6 +62,10 @@ public class Horario {
      * @param usuario Usuario cuyas tareas se utilizarán para generar el horario.
      */
     public void generarHorario(Usuario usuario) {
+           listaTareas.clear();
+    }
+    public void generarHorario(Usuario usuario) {
+        // Limpiar la lista actual de tareas en el horario antes de generar uno nuevo
         listaTareas.clear();
     }
 
