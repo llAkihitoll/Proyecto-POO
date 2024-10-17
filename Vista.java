@@ -167,6 +167,12 @@ public class Vista  extends JFrame{
          */
         registro.add(interaccion_registro, BorderLayout.CENTER);
         registro.add(confirmacion, BorderLayout.SOUTH);
+
+        confirmacion.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e){
+                ventana_principal();
+            }
+        });
     }
 
     public void ventana_principal(){
@@ -174,7 +180,7 @@ public class Vista  extends JFrame{
          * Crear una nueva ventana para poder llevar a cabo el registro
          */
         JFrame principal = new JFrame();
-        principal.setTitle("App manejo del tiempo");
+        principal.setTitle("App manejo del tiempo - Principal");
         principal.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         principal.setSize(800, 500);
         principal.setVisible(true);
@@ -216,6 +222,11 @@ public class Vista  extends JFrame{
         }
         for(int i = 0; i<31; i++){
             JButton botondia = new JButton("Octubre " + (i+1));
+            botondia.addActionListener(new ActionListener(){
+                public void actionPerformed(ActionEvent e){
+                    ventana_dia();
+                }
+            });
             dias.add(botondia);
         }
         for (int i = 0; i<2; i++){
@@ -261,6 +272,63 @@ public class Vista  extends JFrame{
         principal.add(listas, BorderLayout.EAST);
         principal.add(salir, BorderLayout.SOUTH);
         
+    }
+
+    public void ventana_dia(){
+        /**
+         * Crear ventana para mostrar las tareas del día y poder agregar nuevas tareas o iniciar un pomodoro
+         */
+        JFrame ventanadia = new JFrame();
+        ventanadia.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        ventanadia.setSize(300, 200);
+        ventanadia.setVisible(true);
+
+        /**
+         * Crear un panel para colocar las tareas del día en un scrollpane
+         */
+        JPanel lista_tareas = new JPanel();
+
+        /**
+         * Crear la componente del panel que será una lista
+         */
+        String[] tareas = {"Tarea 1", "Tarea 2", "Tarea 3"};
+        JList<String> usuario_tareas = new JList<>(tareas);
+        JScrollPane scrollPane1 = new JScrollPane(usuario_tareas);
+
+        /**
+         * Agregar la lista al panel
+         */
+        lista_tareas.add(scrollPane1);
+
+        /**
+         * Crear un nuevo panel para colocar los botones para agregar tarea e iniciar un nuevo pomodoro
+         */
+        JPanel opciones = new JPanel();
+        opciones.setLayout(new GridLayout(2, 1));
+
+        /**
+         * Crear las componentes del panel
+         */
+        JButton agregar_tarea = new JButton("Agregar tarea");
+        JButton pomodoro =  new JButton("Pomodoro");
+
+        /**
+         * Agregar los botones al panel
+         */
+        opciones.add(agregar_tarea);
+        opciones.add(pomodoro);
+        
+        /**
+         * Crear un boton para salir
+         */
+        JButton salir = new JButton("Salir");
+
+        /**
+         * Agregar los paneles y el boton de salir a la ventana
+         */
+        ventanadia.add(lista_tareas, BorderLayout.CENTER);
+        ventanadia.add(opciones, BorderLayout.EAST);
+        ventanadia.add(salir, BorderLayout.SOUTH);
     }
 
     public static void main(String[] args) {
