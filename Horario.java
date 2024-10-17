@@ -102,6 +102,15 @@ public class Horario {
         // Ordenar la lista de tareas por prioridad (1 más alta, 3 más baja)
         listaTareas.sort((tarea1, tarea2) -> Integer.compare(tarea1.getPrioridad(), tarea2.getPrioridad()));
     }
+    /**
+     * Muestra el horario en formato de texto.
+     */
+    public void mostrarHorario() {
+        System.out.println("Tareas pendientes en el horario:");
+        for (Tarea tarea : listaTareas) {
+            System.out.println("Tarea: " + tarea.getNombreTarea());
+        }
+    }
 
 }
 
