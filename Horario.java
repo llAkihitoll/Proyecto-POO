@@ -42,6 +42,14 @@ public class Horario {
     public void setListaTareas(List<Tarea> listaTareas) {
         this.listaTareas = listaTareas;
     }
+    /**
+     * Agrega una tarea al horario.
+     * 
+     * @param tarea Tarea que se desea agregar al horario.
+     */
+    public void agregarTarea(Tarea tarea) {
+        listaTareas.add(tarea);
+    }
 
     
 }
