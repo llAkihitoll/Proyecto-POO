@@ -56,6 +56,14 @@ public class Horario {
             listaTareas.add(tarea);
         }
     }
+    /**
+     * Genera un horario basado en la lista de tareas del usuario.
+     * 
+     * @param usuario Usuario cuyas tareas se utilizarán para generar el horario.
+     */
+    public void generarHorario(Usuario usuario) {
+        listaTareas.clear();
+    }
 
 }
 
