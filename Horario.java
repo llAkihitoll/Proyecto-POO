@@ -68,6 +68,16 @@ public class Horario {
         // Limpiar la lista actual de tareas en el horario antes de generar uno nuevo
         listaTareas.clear();
     }
+    public void generarHorario(Usuario usuario) {
+        listaTareas.clear();
+
+        // Dividir las tareas por prioridad y solo agregar las que no estén completadas
+        for (Tarea tarea : usuario.getTareas()) {
+            if (!tarea.getCompletado()) {
+                listaTareas.add(tarea);
+            }
+        }
+    }
 
 }
 
