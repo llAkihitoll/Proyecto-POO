@@ -329,6 +329,30 @@ public class Vista  extends JFrame{
         ventanadia.add(lista_tareas, BorderLayout.CENTER);
         ventanadia.add(opciones, BorderLayout.EAST);
         ventanadia.add(salir, BorderLayout.SOUTH);
+
+        pomodoro.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e){
+                ventana_pomodoro();
+            }
+        });
+    }
+
+    public void ventana_pomodoro(){
+        Aplicacion app = new Aplicacion();
+        JFrame ventanapomodoro = new JFrame();
+        ventanapomodoro.setSize(350, 200);
+        ventanapomodoro.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        ventanapomodoro.setVisible(true);
+
+        JPanel mostrar = new JPanel();
+        mostrar.setLayout(new GridLayout(2,1));
+
+        JLabel texto1 = new JLabel(app.IniciarPomodoro(1));
+
+        mostrar.add(texto1);
+
+        ventanapomodoro.add(mostrar);
+        
     }
 
     public static void main(String[] args) {
