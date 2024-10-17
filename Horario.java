@@ -51,6 +51,11 @@ public class Horario {
         listaTareas.add(tarea);
     }
 
-    
+    public void agregarTarea(Tarea tarea) {
+        if (!tarea.getCompletado()) { // Solo agregar tareas que no están completadas
+            listaTareas.add(tarea);
+        }
+    }
+
 }
 
