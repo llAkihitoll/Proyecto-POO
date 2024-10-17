@@ -335,24 +335,100 @@ public class Vista  extends JFrame{
                 ventana_pomodoro();
             }
         });
+        agregar_tarea.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e){
+                ventana_anadir_tarea();
+            }
+        });
     }
 
     public void ventana_pomodoro(){
+        /**
+         * Crear una nueva ventana
+         */
         Aplicacion app = new Aplicacion();
         JFrame ventanapomodoro = new JFrame();
+        ventanapomodoro.setTitle("Pomodoro");
         ventanapomodoro.setSize(350, 200);
         ventanapomodoro.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         ventanapomodoro.setVisible(true);
 
+        /**
+         * Crear un nuevo panel para colocar la informacion sobre el pomodoro
+         */
         JPanel mostrar = new JPanel();
         mostrar.setLayout(new GridLayout(2,1));
 
+        /**
+         * Crear el texto que aparecerá en el panel, implementando un metodo de la clase Aplicacion
+         */
         JLabel texto1 = new JLabel(app.IniciarPomodoro(1));
 
+        /**
+         * Agregar el texto al panel
+         */
         mostrar.add(texto1);
 
+        /**
+         * Agregar el panel a la ventana
+         */
         ventanapomodoro.add(mostrar);
         
+    }
+
+    public void ventana_anadir_tarea(){
+        /**
+         * Crear un nueva ventana
+         */
+        JFrame anadir_tarea = new JFrame();
+        anadir_tarea.setTitle("Añadir tarea");
+        anadir_tarea.setSize(600, 300);
+        anadir_tarea.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        anadir_tarea.setVisible(true);
+
+        /**
+         * Crear un nuevo panel para colocar las etiquetas y los campos de texto
+         */
+        JPanel info_tarea = new JPanel();
+        info_tarea.setLayout(new GridLayout(5,2));
+        /**
+         * Crear las componentes del panel (etiquetas y campos de texto)
+         */
+        JLabel nombre = new JLabel("Ingrese el nombre de la tarea");
+        JLabel prioridad = new JLabel("Ingrese la prioridad de la tarea");
+        JLabel duracion = new JLabel("Ingrese la duracion de la tarea");
+        JLabel detalles = new JLabel("Ingrese los detalles de la tarea");
+
+        JTextField ing_nombre = new JTextField(20);
+        JTextField ing_prioridad = new JTextField(20);
+        JTextField ing_duracion = new JTextField(20);
+        JTextField ing_detalles = new JTextField(20);
+
+        /**
+         * Añadir las componentes al panel
+         */
+        info_tarea.add(nombre);
+        info_tarea.add(ing_nombre);
+        info_tarea.add(prioridad);
+        info_tarea.add(ing_prioridad);
+        info_tarea.add(duracion);
+        info_tarea.add(ing_duracion);
+        info_tarea.add(detalles);
+        info_tarea.add(ing_detalles);
+
+
+        /**
+         * Crear un boton para salir
+         */
+        JButton salir = new JButton("Salir");
+
+        /**
+         * Añadir el panel y el boton a la ventana
+         */
+        anadir_tarea.add(info_tarea, BorderLayout.CENTER);
+        anadir_tarea.add(salir, BorderLayout.SOUTH);
+
+
     }
 
     public static void main(String[] args) {
