@@ -2,10 +2,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Clase que representa el Horario.
- * Un horario tiene una lista de tareas.
- * 
- * @autor Javier Chávez
+ * Clase que representa un Horario.
+ * El Horario contiene una lista de tareas.
  */
 public class Horario {
     /**
@@ -21,39 +19,30 @@ public class Horario {
     }
 
     /**
-     * Constructor que inicializa el horario con una lista de tareas dada.
-     * 
-     * @param listaTareas Lista de tareas para el horario.
-     */
-    public Horario(List<Tarea> listaTareas) {
-        this.listaTareas = listaTareas;
-    }
-
-    /**
      * Obtiene la lista de tareas en el horario.
      * 
-     * @return Lista de tareas.
+     * @return Lista de tareas en el horario.
      */
     public List<Tarea> getListaTareas() {
         return listaTareas;
     }
 
     /**
-     * Establece la lista de tareas del horario.
+     * Establece la lista de tareas para el horario.
      * 
-     * @param listaTareas Lista de tareas a asignar al horario.
+     * @param listaTareas Lista de tareas para el horario.
      */
     public void setListaTareas(List<Tarea> listaTareas) {
         this.listaTareas = listaTareas;
     }
 
     /**
-     * Agrega una tarea al horario.
+     * Agrega una tarea al horario si no está completada.
      * 
-     * @param tarea Tarea que se desea agregar al horario.
+     * @param tarea Tarea que se va a agregar.
      */
     public void agregarTarea(Tarea tarea) {
-        if (!tarea.getCompletado()) { // Solo agregar tareas que no están completadas
+        if (!tarea.getCompletado()) { // Solo agregar tareas no completadas
             listaTareas.add(tarea);
         }
     }
@@ -62,25 +51,25 @@ public class Horario {
      * Genera un horario basado en la lista de tareas del usuario.
      * Se agregan solo tareas no completadas y se ordenan por prioridad.
      * 
-     * @param usuario Usuario cuyas tareas se utilizarán para generar el horario.
+     * @param usuario Usuario cuyas tareas se usarán para generar el horario.
      */
     public void generarHorario(Usuario usuario) {
-        // Limpiar la lista actual de tareas en el horario antes de generar uno nuevo
+        // Limpiar la lista actual de tareas en el horario
         listaTareas.clear();
 
-        // Dividir las tareas por prioridad y solo agregar las que no estén completadas
+        // Agregar solo las tareas no completadas del usuario y ordenarlas por prioridad
         for (Tarea tarea : usuario.getTareas()) {
             if (!tarea.getCompletado()) {
                 listaTareas.add(tarea);
             }
         }
 
-        // Ordenar la lista de tareas por prioridad (1 más alta, 3 más baja)
-        listaTareas.sort((tarea1, tarea2) -> Integer.compare(tarea1.getPrioridad(), tarea2.getPrioridad()));
+        // Ordenar las tareas por prioridad (de menor a mayor prioridad)
+        listaTareas.sort((t1, t2) -> Integer.compare(t1.getPrioridad(), t2.getPrioridad()));
     }
 
     /**
-     * Muestra el horario en formato de texto.
+     * Muestra el horario en la consola, listando las tareas pendientes.
      */
     public void mostrarHorario() {
         if (listaTareas.isEmpty()) {
