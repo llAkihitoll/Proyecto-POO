@@ -1,21 +1,15 @@
+import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Clase que representa el Horario.
+ * Un horario tiene una lista de tareas.
+ * 
+ * @autor Diego Reyes
+ */
 public class Horario {
+    /**
+     * Lista de tareas en el horario.
+     */
     private List<Tarea> listaTareas;
-
-    public Horario(List<Tarea> listaTareas) {
-        this.listaTareas = listaTareas;
-    }
-
-    public Horario(){
-        
-    }
-
-    public List<Tarea> getListaTareas() {
-        return listaTareas;
-    }
-
-    public void setListaTareas(List<Tarea> listaTareas) {
-        this.listaTareas = listaTareas;
-    }
 }
