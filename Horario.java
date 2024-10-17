@@ -124,6 +124,20 @@ public class Horario {
             }
         }
     }
+    public void mostrarHorario() {
+        if (listaTareas.isEmpty()) {
+            System.out.println("No hay tareas pendientes en el horario.");
+        } else {
+            System.out.println("Tareas pendientes en el horario:");
+            for (Tarea tarea : listaTareas) {
+                System.out.println("Tarea: " + tarea.getNombreTarea() +
+                                   "\n  Prioridad: " + tarea.getPrioridad() +
+                                   "\n  Duración: " + tarea.getDuracion() + " minutos" +
+                                   "\n  Detalles: " + tarea.getDetalles());
+            }
+        }
+    }
+}
 
 }
 
