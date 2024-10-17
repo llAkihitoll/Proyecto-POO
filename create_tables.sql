@@ -54,3 +54,14 @@ CREATE TABLE badges (
     nombre VARCHAR(255) NOT NULL,       -- Nombre del badge
     descripcion TEXT NOT NULL           -- Descripcion del badge
 );
+/*
+Tabla para almacenar los badges que tienen los usuarios.
+*/
+CREATE TABLE usuarios_badges (
+    id_usuario INT NOT NULL,            -- Llave foranea que referencia al usuario
+    id_badge INT NOT NULL,              -- Llave foranea que referencia al badge
+    fecha_obtencion DATETIME NOT NULL,  -- Fecha en la que el usuario obtuvo el badge
+    PRIMARY KEY (id_usuario, id_badge), -- Llave primaria compuesta por ambas columnas
+    FOREIGN KEY (id_usuario) REFERENCES usuarios(id) ON DELETE CASCADE,
+    FOREIGN KEY (id_badge) REFERENCES badges(id) ON DELETE CASCADE
+);
