@@ -46,15 +46,220 @@ public class Vista  extends JFrame{
             */
            ingreso.add(interaccion_ingreso);
 
+           iniciar_sesion.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e){
+                ventana_inicio_sesion();
+            }
+           });
+
+           registrarse.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                ventana_registro();
+            }
+           });
+
     }
 
-    public static void ventana_inicio_sesion(){
-        JFrame inicio_de_sesion = new JFrame();
-        inicio_de_sesion.setTitle("App manejo de tiempo - Iniciar sesión");
-        inicio_de_sesion.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        inicio_de_sesion.setSize(350, 250);
-        inicio_de_sesion.setVisible(true);
+    /**
+     * 
+     */
+    public void ventana_inicio_sesion(){
+        /**
+         * Crear una nueva ventana para llevar a cabo el incio de sesión 
+         */
+        JFrame inicio_sesion = new JFrame();
+        inicio_sesion.setTitle("App menajo del tiempo - Inicio sesión");
+        inicio_sesion.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        inicio_sesion.setSize(500, 250);
+        inicio_sesion.setVisible(true);
 
+        /**
+         * Crear panel para agregar los componentes de la ventana
+         */
+        JPanel interaccion_inicio_sesion = new JPanel();
+        interaccion_inicio_sesion.setLayout(new GridLayout(2,2));
+
+        /**
+         * Crear las componentes del panel: etiquetas de texto para indicar que se debe ingresar en cada campo de texto y dichos campos de texto
+         */
+        JLabel nom_usuario = new JLabel("Ingrese nombre de usuario");
+        JLabel contrasena = new JLabel("Ingrese contraseña");
+
+        JTextField ing_nom_usuario = new JTextField(20);
+        JTextField ing_contrasena = new JTextField(20);
+
+        /**
+         * Agregar las componentes al panel
+         */
+        interaccion_inicio_sesion.add(nom_usuario); // se agrega a la fila 1 columna 1
+        interaccion_inicio_sesion.add(ing_nom_usuario); //se agrega a la fila 1 columna 2
+        interaccion_inicio_sesion.add(contrasena); //se agrega a la fila 2 columna 1
+        interaccion_inicio_sesion.add(ing_contrasena); //se agrega a la fila 2 columna 2
+
+        /**
+         * Crear un botón de confirmacion 
+         */
+        JButton confirmacion = new JButton("Aceptar");
+        confirmacion.setSize(200,100);
+
+        /**
+         * Agregar el panel y boton de confirmacion a la ventana
+         */
+        inicio_sesion.add(interaccion_inicio_sesion, BorderLayout.CENTER);
+        inicio_sesion.add(confirmacion, BorderLayout.SOUTH);
+
+        confirmacion.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e){
+                ventana_principal();
+            }
+        });
+
+    }
+
+    /**
+     * metodo para abrir una nueva ventana y poder realizar el registro de un nuevo usuario cuando ese boton sea oprimido en la ventana inicial
+     */
+    public void ventana_registro(){
+        /**
+         * Crear una nueva ventana para poder llevar a cabo el registro
+         */
+        JFrame registro = new JFrame();
+        registro.setTitle("App manejo del tiempo - Registro");
+        registro.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        registro.setSize(500, 250);
+        registro.setVisible(true);
+
+        /**
+         * Crear panel para agregar los componentes de la ventana
+         */
+        JPanel interaccion_registro = new JPanel();
+        interaccion_registro.setLayout(new GridLayout(3,2));
+
+        /**
+         * Crear las componentes del panel: etiquetas de texto para indicar que se debe ingresar en cada campo de texto y dichos campos de texto
+         */
+        JLabel nom_usuario = new JLabel("Ingrese su nombre de usuario");
+        JLabel contrasena = new JLabel("Ingrese su contraseña");
+        JLabel confirm_contrasena = new JLabel("Confirme su contraseña");
+
+        JTextField ing_nom_usuario = new JTextField(20);
+        JTextField ing_contrasena = new JTextField(20);
+        JTextField ing_confirm_contrasena = new JTextField(20);
+
+        /**
+         * Agregar las componentes al panel
+         */
+        interaccion_registro.add(nom_usuario); //se agrega a la primera fila primera columna
+        interaccion_registro.add(ing_nom_usuario); //se agrega a la primera fila segunda columna
+        interaccion_registro.add(contrasena); //se agrega a la segunda fila primera columna
+        interaccion_registro.add(ing_contrasena); //se agrega a la segunda fila segunda columna
+        interaccion_registro.add(confirm_contrasena); //se agrega a la tercera fila primera columna
+        interaccion_registro.add(ing_confirm_contrasena); //se agrega a la tercera fila segunda columna
+
+        /**
+         * Crear un botón de confirmacion 
+         */
+        JButton confirmacion = new JButton("Aceptar");
+        confirmacion.setSize(200,100);
+
+        /**
+         * Agregar el panel y el boton de confirmacion a la ventana
+         */
+        registro.add(interaccion_registro, BorderLayout.CENTER);
+        registro.add(confirmacion, BorderLayout.SOUTH);
+    }
+
+    public void ventana_principal(){
+        /**
+         * Crear una nueva ventana para poder llevar a cabo el registro
+         */
+        JFrame principal = new JFrame();
+        principal.setTitle("App manejo del tiempo");
+        principal.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        principal.setSize(800, 500);
+        principal.setVisible(true);
+
+        /**
+         * Crear un nuevo panel para poder agregar el calendario
+         */
+        JPanel dias = new JPanel();
+        dias.setLayout(new GridLayout(6, 7));
+
+        /**
+         * Crear las etiquetas de texto del panel
+         */
+        JLabel lunes = new JLabel("LU");
+        JLabel martes = new JLabel("MA");
+        JLabel miercoles = new JLabel("MI");
+        JLabel jueves = new JLabel("JU");
+        JLabel viernes = new JLabel("VI");
+        JLabel sabado = new JLabel("SA");
+        JLabel domingo = new JLabel("DO");
+
+        /**
+         * Agregar las etiquetas de texto al panel
+         */
+        dias.add(domingo);
+        dias.add(lunes);
+        dias.add(martes);
+        dias.add(miercoles);
+        dias.add(jueves);
+        dias.add(viernes);
+        dias.add(sabado);
+
+        /**
+         * Crear y agregar los botones de días al panel
+         */
+        for (int i = 0; i<2; i++){
+            JButton botonvacio = new JButton("");
+            dias.add(botonvacio);
+        }
+        for(int i = 0; i<31; i++){
+            JButton botondia = new JButton("Octubre " + (i+1));
+            dias.add(botondia);
+        }
+        for (int i = 0; i<2; i++){
+            JButton botonvacio = new JButton("");
+            dias.add(botonvacio);
+        }
+
+        /**
+         * Crear otro panel para poder tener la lista de tareas proximas, medallas y el boton de medallas
+         */
+        JPanel listas = new JPanel();
+        listas.setLayout(new GridLayout(3,1));
+
+        /**
+         * Crear las componentes del nuevo panel (listas y boton)
+         */
+        String[] tareas = {"Tarea 1", "Tarea 2", "Tarea 3"};
+        JList<String> lista_tareas = new JList<>(tareas);
+        JScrollPane scrollPane1 = new JScrollPane(lista_tareas);
+
+        String[] medallas = {"Medalla 1", "Medalla 2", "Medalla 3"};
+        JList<String> lista_medallas = new JList<>(medallas);
+        JScrollPane scrollPane2 = new JScrollPane(lista_medallas);
+
+        JButton bmedallas = new JButton("Medallas");
+
+        /**
+         * Agregar las componentes al panel
+         */
+        listas.add(scrollPane1);
+        listas.add(scrollPane2);
+        listas.add(bmedallas);
+
+        /**
+         * Crear un boton para salir
+         */
+        JButton salir = new JButton("Salir");
+
+        /**
+         * Agregar los paneles y el boton a la ventana
+         */
+        principal.add(dias,BorderLayout.CENTER);
+        principal.add(listas, BorderLayout.EAST);
+        principal.add(salir, BorderLayout.SOUTH);
         
     }
 
