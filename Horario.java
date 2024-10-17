@@ -26,6 +26,14 @@ public class Horario {
     public Horario(List<Tarea> listaTareas) {
         this.listaTareas = listaTareas;
     }
+    /**
+     * Obtiene la lista de tareas en el horario.
+     * 
+     * @return Lista de tareas.
+     */
+    public List<Tarea> getListaTareas() {
+        return listaTareas;
+    }
 
     
 }
