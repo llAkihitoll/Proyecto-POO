@@ -34,6 +34,14 @@ public class Horario {
     public List<Tarea> getListaTareas() {
         return listaTareas;
     }
+    /**
+     * Establece la lista de tareas del horario.
+     * 
+     * @param listaTareas Lista de tareas a asignar al horario.
+     */
+    public void setListaTareas(List<Tarea> listaTareas) {
+        this.listaTareas = listaTareas;
+    }
 
     
 }
