@@ -422,7 +422,7 @@ public class Vista  extends JFrame{
          * Crear las componentes del panel (etiquetas y campos de texto)
          */
         JLabel nombre = new JLabel("Ingrese el nombre de la tarea");
-        JLabel prioridad = new JLabel("Ingrese la prioridad de la tarea");
+        JLabel prioridad = new JLabel("Ingrese la prioridad de la tarea (Del 1 al 3 siendo el maximo)");
         JLabel duracion = new JLabel("Ingrese la duracion de la tarea");
         JLabel detalles = new JLabel("Ingrese los detalles de la tarea");
 
