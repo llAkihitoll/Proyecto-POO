@@ -145,6 +145,16 @@ public class Vista  extends JFrame{
         JTextField ing_nom_usuario = new JTextField(20);
         JTextField ing_contrasena = new JTextField(20);
         JTextField ing_confirm_contrasena = new JTextField(20);
+        
+         /**
+         * Usar la informacion para poder pasarla a String y que el programa lo entienda
+         */
+        String Nombre = ing_nom_usuario.getText();
+        String Clave = ing_contrasena.getText();
+          /**
+         * Guardar los componentes del usuario 
+         */
+        Usuario nuevoUsuario = new Usuario( Nombre , Clave , 0);
 
         /**
          * Agregar las componentes al panel
