@@ -15,6 +15,10 @@ public class Usuario {
      */
     private String nombreUsuario; 
     /**
+     * Contraseña  de usuario
+     */
+    private String ClaveUsuario;
+    /**
      * Numero de dias consecutivos que el usuario ha completado sus tareas asignadas.
      */
     private int rachaDeDias; 
@@ -31,6 +35,7 @@ public class Usuario {
  */
 public Usuario() {
     this.nombreUsuario = "";
+    this.ClaveUsuario = "";
     this.rachaDeDias = 0;
     this.tareas = new ArrayList<>();
     this.badges = new ArrayList<>();
@@ -41,8 +46,9 @@ public Usuario() {
  * @param nombreUsuario
  * @param rachaDeDias
  */
-    public Usuario(String nombreUsuario, int rachaDeDias) {
+    public Usuario(String nombreUsuario,String ClaveUsuario, int rachaDeDias) {
         this.nombreUsuario = nombreUsuario;
+        this.ClaveUsuario = ClaveUsuario;
         this.rachaDeDias = rachaDeDias;
         this.tareas = new ArrayList<>();
         this.badges = new ArrayList<>();
