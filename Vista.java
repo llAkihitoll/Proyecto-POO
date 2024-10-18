@@ -448,6 +448,25 @@ public class Vista  extends JFrame{
          * Crear un boton para salir
          */
         JButton salir = new JButton("Salir");
+        salir.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                 /**
+                 * Usar la informacion para poder pasarla a String y que el programa lo entienda
+                 */
+                String Tarea = ing_nombre.getText();
+                int prioridad = ing_prioridad.getText();
+                double  tiempo = ing_duracion.getText();
+                String detalle = ing_detalles.getText();
+                  /**
+                 * Guardar los componentes del usuario 
+                 */
+                Tarea nuevoTarea = new Tarea(Tarea, prioridad, tiempo,detalle);
+                nuevoTarea.setNombreTarea(String Nombre);
+                nuevoTarea.setPrioridad(int prioridad);
+                nuevoTarea.setDuracion(double duracion);
+                nuevoTarea.setDetalles(String detalles);
+            }
+        });
 
         /**
          * Añadir el panel y el boton a la ventana
