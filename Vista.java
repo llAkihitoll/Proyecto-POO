@@ -101,13 +101,16 @@ public class Vista  extends JFrame{
          */
         JButton confirmacion = new JButton("Aceptar");
         confirmacion.setSize(200,100);
+         /**
+         * Crear una accion para que la informacion se guarde luego de precionar el boton 
+         */
         confirmacion.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                  /**
                  * Usar la informacion del inicio de sesion  para poder pasarla a String y que el programa lo entienda
                  */
-                String Nombre = ing_nom_usuario.getText();
-                String Clave = ing_contrasena.getText();
+                String Nombre = ing_nom_usuario.getText();// obtener la informacion sacada de la interfaz (Nombre del usuario )
+                String Clave = ing_contrasena.getText();// obtener la informacion sacada de la interfaz (Clave del usuario )
                   /**
                  * Falta verificacion del usuario 
                  */
