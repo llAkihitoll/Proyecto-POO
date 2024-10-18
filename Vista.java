@@ -454,23 +454,26 @@ public class Vista  extends JFrame{
          * Crear un boton para salir
          */
         JButton salir = new JButton("Salir");
+         /**
+         * Crear un evento para poder guardar la informacion de las tareas al salir de la ventana 
+         */
         salir.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                  /**
                  * Usar la informacion para poder pasarla a String y que el programa lo entienda
                  */
-                String Tarea = ing_nombre.getText();
-                int prioridad = ing_prioridad.getText();
-                double  tiempo = ing_duracion.getText();
-                String detalle = ing_detalles.getText();
+                String Tarea = ing_nombre.getText();//Transformar la informacion par poder utilizarla (Nombre de la tarea )
+                int prioridad = ing_prioridad.getText();//Transformar la informacion par poder utilizarla (Prioridad de la tarea en numeros enteros  )
+                double  tiempo = ing_duracion.getText();//Transformar la informacion par poder utilizarla (Tiempo estimado de la tarea en double )
+                String detalle = ing_detalles.getText();//Transformar la informacion par poder utilizarla (Detalles de la tarea )
                   /**
                  * Guardar los componentes del usuario 
                  */
                 Tarea nuevoTarea = new Tarea(Tarea, prioridad, tiempo,detalle);
-                nuevoTarea.setNombreTarea(String Nombre);
-                nuevoTarea.setPrioridad(int prioridad);
-                nuevoTarea.setDuracion(double duracion);
-                nuevoTarea.setDetalles(String detalles);
+                nuevoTarea.setNombreTarea(String Nombre);// Guardar la informacion para poder usarlo en el codigo (Nombre de la tarea )
+                nuevoTarea.setPrioridad(int prioridad);// Guardar la informacion para poder usarlo en el codigo(Prioridad de la tarea en numeros enteros  )
+                nuevoTarea.setDuracion(double duracion);// Guardar la informacion para poder usarlo en el codigo (Tiempo estimado de la tarea en double )
+                nuevoTarea.setDetalles(String detalles);// Guardar la informacion para poder usarlo en el codigo(Detalles de la tarea )
             }
         });
 
