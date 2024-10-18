@@ -155,6 +155,8 @@ public class Vista  extends JFrame{
          * Guardar los componentes del usuario 
          */
         Usuario nuevoUsuario = new Usuario( Nombre , Clave , 0);
+        nuevoUsuario.setNombreUsuario(String Nombre);
+        nuevoUsuario.setClaveUsuario(String Clave);
 
         /**
          * Agregar las componentes al panel
