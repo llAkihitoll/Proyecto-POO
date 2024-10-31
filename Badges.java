@@ -17,6 +17,9 @@ public class Badges {
     public List<String> getRecompensas() {
         return recompensas;
     }
+
+    public List<String>getRecompensasAdquiridas(){
+        return recompensasAdquiridas;
     
 // metodo para agregar una nueva recompensa a la lista 
     public void agregarRecompensa(String recompensa) {
