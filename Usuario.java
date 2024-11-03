@@ -2,11 +2,12 @@
  * 
 */
 import java.util.ArrayList;
+import java.util.List;
 /*
  * Clase que representa un Usuario.
  * Cada usuario tiene: Nombre, número de días de racha, una lista de tareas y una lista de badges.
  * 
- * @author Javier Chávez
+ * @author Javier Chávez / modificado por Rodrigo Ajmac
  */
 public class Usuario {
 //Atributos
@@ -25,7 +26,7 @@ public class Usuario {
     /**
      * Lista de longitud indefinida con las tareas asignadas.
      */
-    private ArrayList<Tarea>[] tareas; 
+    private List<ArrayList<Tarea>> tareas; 
     /**
      * Lista de longitud indefinida con los badges del usuario.
      */
@@ -35,24 +36,14 @@ public class Usuario {
  * Crea un usuario sin nombre ni dias de racha.
  */
 public Usuario() {
-    this.nombreUsuario = "";
-    this.claveusuario = "";
+    List<ArrayList<Tarea>> lista = new ArrayList<>();
+    for (int i = 0; i < 31; i++) {
+        lista.add(new ArrayList<Tarea>());
+    }
     this.rachaDeDias = 0;
-    this.tareas = new ArrayList<Tarea>[31];
+    this.tareas = lista;
     this.badges = new ArrayList<>();
 }
-/**
- *  Crea un usuario con nombre y dias de racha.
- * 
- * @param nombreUsuario
- * @param rachaDeDias
- */
-    public Usuario(String nombreUsuario,String claveusuario, int rachaDeDias) {
-        this.nombreUsuario = nombreUsuario;
-        this.claveusuario = claveusuario;
-        this.rachaDeDias = rachaDeDias;
-        this.badges = new ArrayList<>();
-    }
 /**
  * Establece el nombre del usuario
  * @param nombreUsuario
@@ -102,18 +93,10 @@ public Usuario() {
         return rachaDeDias;
     }
 /**
- * Establece la lista de tareas del usuario
- * 
- * @param tareas
- */
-    public void setTareas(ArrayList<Tarea>[] tareas) {
-        this.tareas = tareas;
-    }
-/**
  * Obtiene la lista de tareas del usuario
  * @return <Tarea>
  */
-    public ArrayList<Tarea>[] getTareas() {
+    public List<ArrayList<Tarea>> getTareas() {
         return tareas;
     }
 /**
@@ -130,5 +113,26 @@ public Usuario() {
  */
     public ArrayList<Badges> getBadges() {
         return badges;
+    }
+
+    public List<ArrayList<String>> nomyprioridad(){
+        List<ArrayList<String>> nombreyprioridad = new ArrayList<>();
+        for (int j = 0; j < 31; j++) {
+            nombreyprioridad.add(new ArrayList<>());
+        }
+        int j=0;
+        for(ArrayList<Tarea> i : tareas){
+            for(Tarea k : i){
+                String info = k.getNombreTarea() + " " + k.getPrioridad();
+                nombreyprioridad.get(j).add(info);
+            }
+            j = j + 1;
+        }
+
+        return nombreyprioridad;
+    } 
+
+    public void agregartarea(int pos, Tarea tarea){
+        tareas.get(pos).add(tarea);
     }
 }

@@ -3,6 +3,7 @@ import javax.swing.*;
 import java.awt.event.*;
 
 public class Vista  extends JFrame{
+    Usuario nuevoUsuario = new Usuario();
     public Vista(){
         /**
          * Crear la ventana que se desplegará cuando el ususario inicie la aplicación
@@ -49,12 +50,14 @@ public class Vista  extends JFrame{
            iniciar_sesion.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e){
                 ventana_inicio_sesion();
+                ingreso.dispose();
             }
            });
 
            registrarse.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 ventana_registro();
+                ingreso.dispose();
             }
            });
 
@@ -68,7 +71,7 @@ public class Vista  extends JFrame{
          * Crear una nueva ventana para llevar a cabo el incio de sesión 
          */
         JFrame inicio_sesion = new JFrame();
-        inicio_sesion.setTitle("App menajo del tiempo - Inicio sesión");
+        inicio_sesion.setTitle("App manejo del tiempo - Inicio sesión");
         inicio_sesion.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         inicio_sesion.setSize(500, 250);
         inicio_sesion.setVisible(true);
@@ -86,7 +89,7 @@ public class Vista  extends JFrame{
         JLabel contrasena = new JLabel("Ingrese contraseña");
 
         JTextField ing_nom_usuario = new JTextField(20);
-        JTextField ing_contrasena = new JTextField(20);
+        JPasswordField ing_contrasena = new JPasswordField(20);
 
         /**
          * Agregar las componentes al panel
@@ -110,7 +113,7 @@ public class Vista  extends JFrame{
                  * Usar la informacion del inicio de sesion  para poder pasarla a String y que el programa lo entienda
                  */
                 String Nombre = ing_nom_usuario.getText();// obtener la informacion sacada de la interfaz (Nombre del usuario )
-                String Clave = ing_contrasena.getText();// obtener la informacion sacada de la interfaz (Clave del usuario )
+                //String Clave = ing_contrasena.getText();// obtener la informacion sacada de la interfaz (Clave del usuario )
                   /**
                  * Falta verificacion del usuario 
                  */
@@ -159,8 +162,8 @@ public class Vista  extends JFrame{
         JLabel confirm_contrasena = new JLabel("Confirme su contraseña");
 
         JTextField ing_nom_usuario = new JTextField(20);
-        JTextField ing_contrasena = new JTextField(20);
-        JTextField ing_confirm_contrasena = new JTextField(20);
+        JPasswordField ing_contrasena = new JPasswordField(20);
+        JPasswordField ing_confirm_contrasena = new JPasswordField(20);
         
 
         /**
@@ -187,13 +190,13 @@ public class Vista  extends JFrame{
                  * Usar la informacion para poder pasarla a String y que el programa lo entienda
                  */
                 String Nombre = ing_nom_usuario.getText();// obtener la informacion sacada de la interfaz (Nombre del usuario )
-                String Clave = ing_contrasena.getText();// obtener la informacion sacada de la interfaz (clave del usuario )
+                //String Clave = ing_contrasena.getText();// obtener la informacion sacada de la interfaz (clave del usuario )
                   /**
                  * Guardar los componentes del usuario 
                  */
-                Usuario nuevoUsuario = new Usuario();
+                
                 nuevoUsuario.setNombreUsuario(Nombre);// Guardar el nombre del usuario para poder ser usado en el codigo 
-                nuevoUsuario.setClaveUsuario(Clave);// Guardar la clave del usuario para poder ser usado en el codigo 
+                //nuevoUsuario.setClaveUsuario(Clave);// Guardar la clave del usuario para poder ser usado en el codigo 
             }
         });
         /**
@@ -257,9 +260,156 @@ public class Vista  extends JFrame{
         }
         for(int i = 0; i<30; i++){
             JButton botondia = new JButton("NOV " + (i+1));
+            int k = i;
             botondia.addActionListener(new ActionListener(){
                 public void actionPerformed(ActionEvent e){
-                    ventana_dia();
+                    /**
+                     * Crear ventana para mostrar las tareas del día y poder agregar nuevas tareas o iniciar un pomodoro
+                     */
+                    JFrame ventanadia = new JFrame();
+                    ventanadia.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                    ventanadia.setSize(300, 200);
+                    ventanadia.setVisible(true);
+
+                    /**
+                     * Crear un panel para colocar las tareas del día en un scrollpane
+                     */
+                    JPanel lista_tareas = new JPanel();
+
+                    /**
+                     * Crear la componente del panel que será una lista
+                     */
+                    String[] tareas = nuevoUsuario.nomyprioridad().get(k).toArray(new String[0]);
+                    JList<String> usuario_tareas = new JList<>(tareas);
+                    JScrollPane scrollPane1 = new JScrollPane(usuario_tareas);
+
+                    /**
+                     * Agregar la lista al panel
+                     */
+                    lista_tareas.add(scrollPane1);
+
+                    /**
+                     * Crear un nuevo panel para colocar los botones para agregar tarea e iniciar un nuevo pomodoro
+                     */
+                    JPanel opciones = new JPanel();
+                    opciones.setLayout(new GridLayout(2, 1));
+
+                    /**
+                     * Crear las componentes del panel
+                     */
+                    JButton agregar_tarea = new JButton("Agregar tarea");
+                    JButton pomodoro =  new JButton("Pomodoro");
+
+                    /**
+                     * Agregar los botones al panel
+                     */
+                    opciones.add(agregar_tarea);
+                    opciones.add(pomodoro);
+                    
+                    /**
+                     * Crear un boton para salir
+                     */
+                    JButton salir = new JButton("Salir");
+
+                    /**
+                     * Agregar los paneles y el boton de salir a la ventana
+                     */
+                    ventanadia.add(lista_tareas, BorderLayout.CENTER);
+                    ventanadia.add(opciones, BorderLayout.EAST);
+                    ventanadia.add(salir, BorderLayout.SOUTH);
+
+                    pomodoro.addActionListener(new ActionListener(){
+                        public void actionPerformed(ActionEvent e){
+                            ventana_pomodoro();
+                        }
+                    });
+                    agregar_tarea.addActionListener(new ActionListener(){
+                        public void actionPerformed(ActionEvent e){
+                            /**
+                             * Crear un nueva ventana
+                             */
+                            JFrame anadir_tarea = new JFrame();
+                            anadir_tarea.setTitle("Añadir tarea");
+                            anadir_tarea.setSize(600, 300);
+                            anadir_tarea.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                            anadir_tarea.setVisible(true);
+
+                            /**
+                             * Crear un nuevo panel para colocar las etiquetas y los campos de texto
+                             */
+                            JPanel info_tarea = new JPanel();
+                            info_tarea.setLayout(new GridLayout(5,2));
+                            /**
+                             * Crear las componentes del panel (etiquetas y campos de texto)
+                             */
+                            JLabel nombre = new JLabel("Ingrese el nombre de la tarea");
+                            JLabel prioridad = new JLabel("Ingrese la prioridad de la tarea (Del 1 al 3 siendo el maximo)");
+                            JLabel duracion = new JLabel("Ingrese la duracion de la tarea");
+                            JLabel detalles = new JLabel("Ingrese los detalles de la tarea");
+
+                            JTextField ing_nombre = new JTextField(20);
+                            JTextField ing_prioridad = new JTextField(20);
+                            JTextField ing_duracion = new JTextField(20);
+                            JTextField ing_detalles = new JTextField(20);
+
+                            /**
+                             * Añadir las componentes al panel
+                             */
+                            info_tarea.add(nombre);
+                            info_tarea.add(ing_nombre);
+                            info_tarea.add(prioridad);
+                            info_tarea.add(ing_prioridad);
+                            info_tarea.add(duracion);
+                            info_tarea.add(ing_duracion);
+                            info_tarea.add(detalles);
+                            info_tarea.add(ing_detalles);
+
+
+                            /**
+                             * Crear un boton para salir
+                             */
+                            JButton salir = new JButton("Agregar");
+                            /**
+                             * Crear un evento para poder guardar la informacion de las tareas al salir de la ventana 
+                             */
+                            salir.addActionListener(new ActionListener() {
+                                public void actionPerformed(ActionEvent e) {
+                                    /**
+                                     * Usar la informacion para poder pasarla a String y que el programa lo entienda
+                                     */
+                                    String Tarea = ing_nombre.getText();//Transformar la informacion par poder utilizarla (Nombre de la tarea )
+                                    int prioridad = Integer.parseInt(ing_prioridad.getText());//Transformar la informacion par poder utilizarla (Prioridad de la tarea en numeros enteros  )
+                                    double  tiempo = Double.parseDouble(ing_duracion.getText());//Transformar la informacion par poder utilizarla (Tiempo estimado de la tarea en double )
+                                    String detalle = ing_detalles.getText();//Transformar la informacion par poder utilizarla (Detalles de la tarea )
+                                    /**
+                                     * Guardar los componentes del usuario 
+                                     */
+                                    Tarea nuevoTarea = new Tarea();
+                                    nuevoTarea.setNombreTarea(Tarea);// Guardar la informacion para poder usarlo en el codigo (Nombre de la tarea )
+                                    nuevoTarea.setPrioridad(prioridad);// Guardar la informacion para poder usarlo en el codigo(Prioridad de la tarea en numeros enteros  )
+                                    nuevoTarea.setDuracion(tiempo);// Guardar la informacion para poder usarlo en el codigo (Tiempo estimado de la tarea en double )
+                                    nuevoTarea.setDetalles(detalle);// Guardar la informacion para poder usarlo en el codigo(Detalles de la tarea )
+                                    nuevoUsuario.agregartarea(k, nuevoTarea);
+
+                                    anadir_tarea.dispose();
+                                }
+                            });
+
+                            /**
+                             * Añadir el panel y el boton a la ventana
+                             */
+                            anadir_tarea.add(info_tarea, BorderLayout.CENTER);
+                            anadir_tarea.add(salir, BorderLayout.SOUTH);
+                            //
+                        }
+                    });
+
+                    salir.addActionListener(new ActionListener() {
+                        public void actionPerformed(ActionEvent e){
+                            ventanadia.dispose();
+                        }
+                    });
+                    ///////
                 }
             });
             dias.add(botondia);
@@ -322,7 +472,7 @@ public class Vista  extends JFrame{
         /**
          * Crear la componente del panel que será una lista
          */
-        String[] tareas = {"Tarea 1", "Tarea 2", "Tarea 3"};
+        DefaultListModel<String> tareas = new DefaultListModel<>();
         JList<String> usuario_tareas = new JList<>(tareas);
         JScrollPane scrollPane1 = new JScrollPane(usuario_tareas);
 
@@ -368,7 +518,81 @@ public class Vista  extends JFrame{
         });
         agregar_tarea.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
-                ventana_anadir_tarea();
+                /**
+                 * Crear un nueva ventana
+                 */
+                JFrame anadir_tarea = new JFrame();
+                anadir_tarea.setTitle("Añadir tarea");
+                anadir_tarea.setSize(600, 300);
+                anadir_tarea.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                anadir_tarea.setVisible(true);
+
+                /**
+                 * Crear un nuevo panel para colocar las etiquetas y los campos de texto
+                 */
+                JPanel info_tarea = new JPanel();
+                info_tarea.setLayout(new GridLayout(5,2));
+                /**
+                 * Crear las componentes del panel (etiquetas y campos de texto)
+                 */
+                JLabel nombre = new JLabel("Ingrese el nombre de la tarea");
+                JLabel prioridad = new JLabel("Ingrese la prioridad de la tarea (Del 1 al 3 siendo el maximo)");
+                JLabel duracion = new JLabel("Ingrese la duracion de la tarea");
+                JLabel detalles = new JLabel("Ingrese los detalles de la tarea");
+
+                JTextField ing_nombre = new JTextField(20);
+                JTextField ing_prioridad = new JTextField(20);
+                JTextField ing_duracion = new JTextField(20);
+                JTextField ing_detalles = new JTextField(20);
+
+                /**
+                 * Añadir las componentes al panel
+                 */
+                info_tarea.add(nombre);
+                info_tarea.add(ing_nombre);
+                info_tarea.add(prioridad);
+                info_tarea.add(ing_prioridad);
+                info_tarea.add(duracion);
+                info_tarea.add(ing_duracion);
+                info_tarea.add(detalles);
+                info_tarea.add(ing_detalles);
+
+
+                /**
+                 * Crear un boton para salir
+                 */
+                JButton salir = new JButton("Agregar");
+                /**
+                 * Crear un evento para poder guardar la informacion de las tareas al salir de la ventana 
+                 */
+                salir.addActionListener(new ActionListener() {
+                    public void actionPerformed(ActionEvent e) {
+                        /**
+                         * Usar la informacion para poder pasarla a String y que el programa lo entienda
+                         */
+                        String Tarea = ing_nombre.getText();//Transformar la informacion par poder utilizarla (Nombre de la tarea )
+                        int prioridad = Integer.parseInt(ing_prioridad.getText());//Transformar la informacion par poder utilizarla (Prioridad de la tarea en numeros enteros  )
+                        double  tiempo = Double.parseDouble(ing_duracion.getText());//Transformar la informacion par poder utilizarla (Tiempo estimado de la tarea en double )
+                        String detalle = ing_detalles.getText();//Transformar la informacion par poder utilizarla (Detalles de la tarea )
+                        /**
+                         * Guardar los componentes del usuario 
+                         */
+                        Tarea nuevoTarea = new Tarea();
+                        nuevoTarea.setNombreTarea(Tarea);// Guardar la informacion para poder usarlo en el codigo (Nombre de la tarea )
+                        nuevoTarea.setPrioridad(prioridad);// Guardar la informacion para poder usarlo en el codigo(Prioridad de la tarea en numeros enteros  )
+                        nuevoTarea.setDuracion(tiempo);// Guardar la informacion para poder usarlo en el codigo (Tiempo estimado de la tarea en double )
+                        nuevoTarea.setDetalles(detalle);// Guardar la informacion para poder usarlo en el codigo(Detalles de la tarea )
+
+                        anadir_tarea.dispose();
+                    }
+                });
+
+                /**
+                 * Añadir el panel y el boton a la ventana
+                 */
+                anadir_tarea.add(info_tarea, BorderLayout.CENTER);
+                anadir_tarea.add(salir, BorderLayout.SOUTH);
+                //
             }
         });
 
@@ -377,6 +601,8 @@ public class Vista  extends JFrame{
                 ventanadia.dispose();
             }
         });
+
+        
     }
 
     public void ventana_pomodoro(){
@@ -457,7 +683,7 @@ public class Vista  extends JFrame{
         /**
          * Crear un boton para salir
          */
-        JButton salir = new JButton("Salir");
+        JButton salir = new JButton("Agregar");
          /**
          * Crear un evento para poder guardar la informacion de las tareas al salir de la ventana 
          */

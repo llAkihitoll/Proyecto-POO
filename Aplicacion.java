@@ -124,7 +124,7 @@ public class Aplicacion {
      * @return horario generado
      */
     public Horario MostrarHorario(int dia){
-        ArrayList<Tarea> lista = usuarioactual.getTareas()[dia+1];
+        ArrayList<Tarea> lista = usuarioactual.getTareas().get(dia+1);
         for(Tarea i : lista){
             int cond = i.getPrioridad();
             if(cond==1 && (i.getCompletado() == false)){
