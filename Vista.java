@@ -126,6 +126,7 @@ public class Vista  extends JFrame{
         confirmacion.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e){
                 ventana_principal();
+                inicio_sesion.dispose();
             }
         });
 
@@ -190,9 +191,9 @@ public class Vista  extends JFrame{
                   /**
                  * Guardar los componentes del usuario 
                  */
-                Usuario nuevoUsuario = new Usuario( Nombre , Clave , 0);
-                nuevoUsuario.setNombreUsuario(String Nombre);// Guardar el nombre del usuario para poder ser usado en el codigo 
-                nuevoUsuario.setClaveUsuario(String Clave);// Guardar la clave del usuario para poder ser usado en el codigo 
+                Usuario nuevoUsuario = new Usuario();
+                nuevoUsuario.setNombreUsuario(Nombre);// Guardar el nombre del usuario para poder ser usado en el codigo 
+                nuevoUsuario.setClaveUsuario(Clave);// Guardar la clave del usuario para poder ser usado en el codigo 
             }
         });
         /**
@@ -204,6 +205,7 @@ public class Vista  extends JFrame{
         confirmacion.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e){
                 ventana_principal();
+                registro.dispose();
             }
         });
     }
@@ -249,22 +251,18 @@ public class Vista  extends JFrame{
         /**
          * Crear y agregar los botones de días al panel
          */
-        for (int i = 0; i<2; i++){
+        for (int i = 0; i<5; i++){
             JButton botonvacio = new JButton("");
             dias.add(botonvacio);
         }
-        for(int i = 0; i<31; i++){
-            JButton botondia = new JButton("Octubre " + (i+1));
+        for(int i = 0; i<30; i++){
+            JButton botondia = new JButton("NOV " + (i+1));
             botondia.addActionListener(new ActionListener(){
                 public void actionPerformed(ActionEvent e){
                     ventana_dia();
                 }
             });
             dias.add(botondia);
-        }
-        for (int i = 0; i<2; i++){
-            JButton botonvacio = new JButton("");
-            dias.add(botonvacio);
         }
 
         /**
@@ -373,6 +371,12 @@ public class Vista  extends JFrame{
                 ventana_anadir_tarea();
             }
         });
+
+        salir.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e){
+                ventanadia.dispose();
+            }
+        });
     }
 
     public void ventana_pomodoro(){
@@ -463,17 +467,19 @@ public class Vista  extends JFrame{
                  * Usar la informacion para poder pasarla a String y que el programa lo entienda
                  */
                 String Tarea = ing_nombre.getText();//Transformar la informacion par poder utilizarla (Nombre de la tarea )
-                int prioridad = ing_prioridad.getText();//Transformar la informacion par poder utilizarla (Prioridad de la tarea en numeros enteros  )
-                double  tiempo = ing_duracion.getText();//Transformar la informacion par poder utilizarla (Tiempo estimado de la tarea en double )
+                int prioridad = Integer.parseInt(ing_prioridad.getText());//Transformar la informacion par poder utilizarla (Prioridad de la tarea en numeros enteros  )
+                double  tiempo = Double.parseDouble(ing_duracion.getText());//Transformar la informacion par poder utilizarla (Tiempo estimado de la tarea en double )
                 String detalle = ing_detalles.getText();//Transformar la informacion par poder utilizarla (Detalles de la tarea )
                   /**
                  * Guardar los componentes del usuario 
                  */
-                Tarea nuevoTarea = new Tarea(Tarea, prioridad, tiempo,detalle);
-                nuevoTarea.setNombreTarea(String Nombre);// Guardar la informacion para poder usarlo en el codigo (Nombre de la tarea )
-                nuevoTarea.setPrioridad(int prioridad);// Guardar la informacion para poder usarlo en el codigo(Prioridad de la tarea en numeros enteros  )
-                nuevoTarea.setDuracion(double duracion);// Guardar la informacion para poder usarlo en el codigo (Tiempo estimado de la tarea en double )
-                nuevoTarea.setDetalles(String detalles);// Guardar la informacion para poder usarlo en el codigo(Detalles de la tarea )
+                Tarea nuevoTarea = new Tarea();
+                nuevoTarea.setNombreTarea(Tarea);// Guardar la informacion para poder usarlo en el codigo (Nombre de la tarea )
+                nuevoTarea.setPrioridad(prioridad);// Guardar la informacion para poder usarlo en el codigo(Prioridad de la tarea en numeros enteros  )
+                nuevoTarea.setDuracion(tiempo);// Guardar la informacion para poder usarlo en el codigo (Tiempo estimado de la tarea en double )
+                nuevoTarea.setDetalles(detalle);// Guardar la informacion para poder usarlo en el codigo(Detalles de la tarea )
+
+                anadir_tarea.dispose();
             }
         });
 

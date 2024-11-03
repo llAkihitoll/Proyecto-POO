@@ -149,9 +149,7 @@ public class Aplicacion {
 
     }
 
-    public Badges MostrarRecompensa(){
-
-    }
+    //public Badges MostrarRecompensa(){}
 
 
 }

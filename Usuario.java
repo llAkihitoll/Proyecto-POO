@@ -48,7 +48,7 @@ public Usuario() {
  */
     public Usuario(String nombreUsuario,String claveusuario, int rachaDeDias) {
         this.nombreUsuario = nombreUsuario;
-        this.ClaveUsuario = claveusuario;
+        this.claveusuario = claveusuario;
         this.rachaDeDias = rachaDeDias;
         this.tareas = new ArrayList<>();
         this.badges = new ArrayList<>();
