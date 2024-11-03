@@ -135,4 +135,17 @@ public Usuario() {
     public void agregartarea(int pos, Tarea tarea){
         tareas.get(pos).add(tarea);
     }
+
+    public ArrayList<String> tareasprox(){
+        ArrayList<String> lista = new ArrayList<>();
+        for(ArrayList<Tarea> i :  tareas){
+            for(Tarea k : i){
+                if((k.getPrioridad() == 3) && (k.getCompletado() == false)){
+                    String mensaje = k.getNombreTarea() + " " + k.getPrioridad();
+                    lista.add(mensaje);
+                }
+            }
+        }
+        return lista;
+    }
 }
