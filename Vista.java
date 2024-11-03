@@ -1,9 +1,11 @@
 import java.awt.*;
 import javax.swing.*;
 import java.awt.event.*;
+import java.util.ArrayList;
 
 public class Vista  extends JFrame{
     Usuario nuevoUsuario = new Usuario();
+    ArrayList<String> proxtar = new ArrayList<>();
     public Vista(){
         /**
          * Crear la ventana que se desplegará cuando el ususario inicie la aplicación
@@ -251,6 +253,10 @@ public class Vista  extends JFrame{
         dias.add(viernes);
         dias.add(sabado);
 
+
+        String[] tareas2 = proxtar.toArray(new String[0]);
+        JList<String> lista_tareas2 = new JList<>(tareas2);
+        JScrollPane scrollPane1 = new JScrollPane(lista_tareas2);
         /**
          * Crear y agregar los botones de días al panel
          */
@@ -391,6 +397,7 @@ public class Vista  extends JFrame{
                                     nuevoTarea.setDetalles(detalle);// Guardar la informacion para poder usarlo en el codigo(Detalles de la tarea )
                                     nuevoUsuario.agregartarea(k, nuevoTarea);
 
+                                    proxtar = nuevoUsuario.tareasprox();
                                     anadir_tarea.dispose();
                                 }
                             });
@@ -421,14 +428,7 @@ public class Vista  extends JFrame{
         JPanel listas = new JPanel();
         listas.setLayout(new GridLayout(3,1));
 
-        /**
-         * Crear las componentes del nuevo panel (listas y boton)
-         */
-        String[] tareas = {"Tarea 1", "Tarea 2", "Tarea 3"};
-        JList<String> lista_tareas = new JList<>(tareas);
-        JScrollPane scrollPane1 = new JScrollPane(lista_tareas);
-
-        String[] medallas = {"Medalla 1", "Medalla 2", "Medalla 3"};
+        String[] medallas = nuevoUsuario.getBadges().toArray(new String[0]);
         JList<String> lista_medallas = new JList<>(medallas);
         JScrollPane scrollPane2 = new JScrollPane(lista_medallas);
 
