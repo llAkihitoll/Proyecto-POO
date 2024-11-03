@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Aplicacion {
     /**
      * Atributos utilizados para el controlador del programa
@@ -74,7 +76,6 @@ public class Aplicacion {
         nuevatarea.setPrioridad(prioridad);
         nuevatarea.setDuracion(duracion);
         nuevatarea.setDetalles(detalles);
-        usuarioactual.getTareas().add(nuevatarea);
     }
 
     /**
@@ -90,10 +91,11 @@ public class Aplicacion {
      */
     public void MarcarCompletado(String nombredetarea){
         String nom = nombredetarea.toLowerCase();
-        for(Tarea i : usuarioactual.getTareas()){
-            String nom1 = i.getNombreTarea().toLowerCase();
-            if(nom1.equals(nom)){
-                i.setCompletado(true);
+        for(ArrayList<Tarea> i : usuarioactual.getTareas()){
+            for(Tarea k : i){
+                if(nom.equals(k.getNombreTarea().toLowerCase())){
+                    k.setCompletado(true);
+                }
             }
         }
     }
@@ -106,10 +108,11 @@ public class Aplicacion {
     public String obtenerDetalles(String nombredetarea){
         String mensaje = "";
         String nom = nombredetarea.toLowerCase();
-        for(Tarea i : usuarioactual.getTareas()){
-            String nom1 = i.getNombreTarea().toLowerCase();
-            if(nom1.equals(nom)){
-                mensaje = i.getDetalles();
+        for(ArrayList<Tarea> i : usuarioactual.getTareas()){
+            for(Tarea k : i){
+                if(nom.equals(k.getNombreTarea().toLowerCase())){
+                    mensaje = k.getDetalles();
+                }
             }
         }
         return mensaje;
@@ -120,22 +123,23 @@ public class Aplicacion {
      * 
      * @return horario generado
      */
-    public Horario MostrarHorario(){
-        for(Tarea i : usuarioactual.getTareas()){
+    public Horario MostrarHorario(int dia){
+        ArrayList<Tarea> lista = usuarioactual.getTareas()[dia+1];
+        for(Tarea i : lista){
             int cond = i.getPrioridad();
             if(cond==1 && (i.getCompletado() == false)){
                 horario.getListaTareas().add(i);
             }
         }
 
-        for(Tarea j : usuarioactual.getTareas()){
+        for(Tarea j : lista){
             int cond = j.getPrioridad();
             if(cond==2 && (j.getCompletado() == false)){
                 horario.getListaTareas().add(j);
             }
         }
 
-        for(Tarea k : usuarioactual.getTareas()){
+        for(Tarea k : lista){
             int cond = k.getPrioridad();
             if(cond==3 && (k.getCompletado() == false)){
                 horario.getListaTareas().add(k);

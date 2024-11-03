@@ -25,11 +25,12 @@ public class Usuario {
     /**
      * Lista de longitud indefinida con las tareas asignadas.
      */
-    private ArrayList<Tarea>tareas; 
+    private ArrayList<Tarea>[] tareas; 
     /**
      * Lista de longitud indefinida con los badges del usuario.
      */
     private ArrayList<Badges>badges; 
+
 /**
  * Crea un usuario sin nombre ni dias de racha.
  */
@@ -37,7 +38,7 @@ public Usuario() {
     this.nombreUsuario = "";
     this.claveusuario = "";
     this.rachaDeDias = 0;
-    this.tareas = new ArrayList<>();
+    this.tareas = new ArrayList<Tarea>[31];
     this.badges = new ArrayList<>();
 }
 /**
@@ -50,7 +51,6 @@ public Usuario() {
         this.nombreUsuario = nombreUsuario;
         this.claveusuario = claveusuario;
         this.rachaDeDias = rachaDeDias;
-        this.tareas = new ArrayList<>();
         this.badges = new ArrayList<>();
     }
 /**
@@ -106,14 +106,14 @@ public Usuario() {
  * 
  * @param tareas
  */
-    public void setTareas(ArrayList<Tarea> tareas) {
+    public void setTareas(ArrayList<Tarea>[] tareas) {
         this.tareas = tareas;
     }
 /**
  * Obtiene la lista de tareas del usuario
  * @return <Tarea>
  */
-    public ArrayList<Tarea> getTareas() {
+    public ArrayList<Tarea>[] getTareas() {
         return tareas;
     }
 /**
