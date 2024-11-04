@@ -660,9 +660,17 @@ public class Vista  extends JFrame{
                         tiempoTranscurrido++;
                         int progreso = (int) (((double) tiempoTranscurrido / duracionPomodoro) * 100);
                         barraProgreso.setValue(progreso);
+
+                        if (progreso >= 100) {
+                            ((Timer) e.getSource()).stop();
+                            JOptionPane.showMessageDialog(ventanapomodoro, "¡Pomodoro completado!");
                     
                 JOptionPane.showMessageDialog(ventanapomodoro, "Pomodoro de " + tiempo + " minutos iniciado.");
                 // El resto de la lógica se implementará en la barra de progreso por tu compañero
+                        }
+                    }
+                });
+                timer.start();
             }
         });
     
