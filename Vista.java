@@ -635,6 +635,13 @@ public class Vista  extends JFrame{
          */
         mostrar.add(tiempoLabel);
         mostrar.add(tiempoField);
+          /** 
+         * Agregar los ajustes de la barra de progreso 
+         */
+        JProgressBar barraProgreso = new JProgressBar(0, 100);
+        barraProgreso.setValue(0);
+        barraProgreso.setStringPainted(true);
+        mostrar.add(barraProgreso);
     
         JButton iniciarButton = new JButton("Iniciar Pomodoro");
         mostrar.add(iniciarButton);
@@ -643,10 +650,16 @@ public class Vista  extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 int tiempo = Integer.parseInt(tiempoField.getText()); // Obtener el tiempo ingresado
-                int duracionPomodoro = tiempoMinutos * 60;
+                int duracionPomodoro = tiempoMinutos * 60;// Convertir minutos a segundos
 
                 Timer timer = new Timer(1000, new ActionListener() {
                     int tiempoTranscurrido = 0;
+
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        tiempoTranscurrido++;
+                        int progreso = (int) (((double) tiempoTranscurrido / duracionPomodoro) * 100);
+                        barraProgreso.setValue(progreso);
                     
                 JOptionPane.showMessageDialog(ventanapomodoro, "Pomodoro de " + tiempo + " minutos iniciado.");
                 // El resto de la lógica se implementará en la barra de progreso por tu compañero
