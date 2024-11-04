@@ -633,11 +633,16 @@ public class Vista  extends JFrame{
          * Agregar el texto al panel
          */
         mostrar.add(texto1);
-        
+        /**
+         *Implementar una barra de progreso 
+         */
         JprogresJProgressBar barraProgreso = new JProgressBar(0, 100);
         barraProgreso.setValue(0);
         barraProgreso.setStringPainted(true);
         mostrar.add(barraProgreso);
+
+        // Agregar el panel a la ventana
+        ventanapomodoro.add(mostrar);
 
         /**
          * Agregar el panel a la ventana
