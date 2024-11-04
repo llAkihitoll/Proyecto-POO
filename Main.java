@@ -10,14 +10,22 @@ public class Main {
         System.out.println("Bienvenido a la aplicación de gestión de tareas."); 
 // dar la bienvenida al programa 
 
-        System.out.print("Ingrese su nombre de usuario: ");
-// falta confirmacion de informacion 
 
-        String nombreUsuario = scanner.nextLine();
 
         Aplicacion app = new Aplicacion();
 // Creación de la aplicación con el nombre de usuario
+        boolean autenticado = false;
+        while (!autenticado) {
+            System.out.print("Ingrese su nombre de usuario: ");
+            String nombreUsuario = scanner.nextLine();
+            System.out.print("Ingrese su contrasena: ");
+            String contrasena = scanner.nextLine();
 
+            autenticado = app.iniciarSesion(nombreUsuario, contrasena);
+            if (!autenticado) {
+                System.out.println("Intente nuevamente.");
+            }
+        }
 
         while (true){
 //Cracion del menu con las opciones disponibles 
