@@ -18,6 +18,18 @@ public class Aplicacion {
 
     }
 
+    public boolean iniciarSesion(String nombreUsuario, String contrasena) {
+        if (ConexionBaseDeDatos.verificarUsuario(nombreUsuario, contrasena)) {
+            usuarioactual = new Usuario();
+            usuarioactual.setNombreUsuario(nombreUsuario);
+            System.out.println("Inicio de sesión exitoso.");
+            return true;
+        } else {
+            System.out.println("Correo o contraseña incorrectos.");
+            return false;
+        }
+    }
+
     /**
      * Metodo para crear un nuevo usuario
      */
@@ -148,10 +160,6 @@ public class Aplicacion {
     public void VerificarRecompensa(){
 
     }
-/* arreglar
-    public void MostrarRecompensa(){
-    
-    }
-*/
+
 
 }
