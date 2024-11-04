@@ -633,6 +633,7 @@ public class Vista  extends JFrame{
         /** 
          * Agregar el texto y el campo de entrada al panel 
          */
+<<<<<<< HEAD
         mostrar.add(tiempoLabel);
         mostrar.add(tiempoField);
     
@@ -651,6 +652,22 @@ public class Vista  extends JFrame{
     
         /** 
          * Agregar el panel a la ventana 
+=======
+        mostrar.add(texto1);
+        /**
+         *Implementar una barra de progreso 
+         */
+        JprogresJProgressBar barraProgreso = new JProgressBar(0, 100);
+        barraProgreso.setValue(0);
+        barraProgreso.setStringPainted(true);
+        mostrar.add(barraProgreso);
+
+        // Agregar el panel a la ventana
+        ventanapomodoro.add(mostrar);
+
+        /**
+         * Agregar el panel a la ventana
+>>>>>>> e54cbdcbf5e9d67cb3b5f17e185f52530c3ce071
          */
         ventanapomodoro.add(mostrar);
     }
