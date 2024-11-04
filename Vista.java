@@ -605,40 +605,73 @@ public class Vista  extends JFrame{
         
     }
 
-    public void ventana_pomodoro(){
-        /**
-         * Crear una nueva ventana
+    public void ventana_pomodoro() {
+        /** 
+         * Crear una nueva ventana 
          */
-        Aplicacion app = new Aplicacion();
         JFrame ventanapomodoro = new JFrame();
         ventanapomodoro.setTitle("Pomodoro");
         ventanapomodoro.setSize(350, 200);
         ventanapomodoro.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         ventanapomodoro.setVisible(true);
-
-        /**
-         * Crear un nuevo panel para colocar la informacion sobre el pomodoro
+    
+        /** 
+         * Crear un nuevo panel para colocar la información sobre el pomodoro 
          */
         JPanel mostrar = new JPanel();
-        mostrar.setLayout(new GridLayout(2,1));
-
-        /**
-         * Crear el texto que aparecerá en el panel, implementando un metodo de la clase Aplicacion
+        mostrar.setLayout(new GridLayout(3, 1)); // Cambiar a 3 filas
+    
+        /** 
+         * Crear un campo de texto para que el usuario ingrese el tiempo 
          */
-        JLabel texto1 = new JLabel(app.IniciarPomodoro(1));
-
-        /**
-         * Agregar el texto al panel
+        JLabel tiempoLabel = new JLabel("Ingrese el tiempo en minutos:");
+        JTextField tiempoField = new JTextField("25"); // Valor por defecto de 25 minutos
+    
+        // Etiqueta para mostrar el temporizador
+        JLabel temporizadorLabel = new JLabel("Tiempo restante: 00:00");
+    
+        /** 
+         * Agregar el texto y el campo de entrada al panel 
          */
-        mostrar.add(texto1);
-
-        /**
-         * Agregar el panel a la ventana
+        mostrar.add(tiempoLabel);
+        mostrar.add(tiempoField);
+        mostrar.add(temporizadorLabel);
+    
+        JButton iniciarButton = new JButton("Iniciar Pomodoro");
+        mostrar.add(iniciarButton);
+    
+        iniciarButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int tiempo = Integer.parseInt(tiempoField.getText()) * 60; // Convertir a segundos
+    
+                // Temporizador para actualizar el tiempo restante
+                Timer timer = new Timer(1000, new ActionListener() { // Cada segundo
+                    int tiempoRestante = tiempo;
+    
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        if (tiempoRestante > 0) {
+                            tiempoRestante--;
+                            int minutos = tiempoRestante / 60;
+                            int segundos = tiempoRestante % 60;
+                            temporizadorLabel.setText(String.format("Tiempo restante: %02d:%02d", minutos, segundos));
+                        } else {
+                            ((Timer) e.getSource()).stop();
+                            JOptionPane.showMessageDialog(ventanapomodoro, "¡Tiempo de Pomodoro terminado!");
+                        }
+                    }
+                });
+                timer.start();
+            }
+        });
+    
+        /** 
+         * Agregar el panel a la ventana 
          */
         ventanapomodoro.add(mostrar);
-        
     }
-
+    
     public void ventana_anadir_tarea(){
         /**
          * Crear un nueva ventana
