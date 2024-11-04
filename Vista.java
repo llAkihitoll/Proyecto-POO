@@ -647,6 +647,7 @@ public class Vista  extends JFrame{
         mostrar.add(iniciarButton);
     
         iniciarButton.addActionListener(new ActionListener() {
+             // lógica  implementada en la barra de progreso 
             @Override
             public void actionPerformed(ActionEvent e) {
                 int tiempo = Integer.parseInt(tiempoField.getText()); // Obtener el tiempo ingresado
@@ -665,8 +666,6 @@ public class Vista  extends JFrame{
                             ((Timer) e.getSource()).stop();
                             JOptionPane.showMessageDialog(ventanapomodoro, "¡Pomodoro completado!");
                     
-                JOptionPane.showMessageDialog(ventanapomodoro, "Pomodoro de " + tiempo + " minutos iniciado.");
-                // El resto de la lógica se implementará en la barra de progreso por tu compañero
                         }
                     }
                 });
