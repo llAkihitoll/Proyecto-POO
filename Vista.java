@@ -442,12 +442,6 @@ public class Vista  extends JFrame{
         principal.add(listas, BorderLayout.EAST);
         principal.add(salir, BorderLayout.SOUTH);
 
-        bmedallas.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e){
-                ventana_medallas();
-            }
-        });
-
         salir.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e){
                 principal.dispose();
@@ -639,51 +633,7 @@ public class Vista  extends JFrame{
         
     }
 
-    public void ventana_medallas() {
-        // Crear la ventana
-        JFrame ventanaMedallas = new JFrame("Medallas de Racha");
-        ventanaMedallas.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        ventanaMedallas.setSize(400, 300);
-        ventanaMedallas.setLayout(new BorderLayout());
 
-        // Crear un panel para la lista de medallas
-        JPanel panelMedallas = new JPanel();
-        panelMedallas.setLayout(new BoxLayout(panelMedallas, BoxLayout.Y_AXIS));
-
-        // Crear etiquetas con nombres creativos de medallas y añadirlas al panel
-        JLabel medalla1 = new JLabel("🥉 Novato Consistente - 3 días de racha");
-        JLabel medalla2 = new JLabel("🥈 Guerrero de la Constancia - 7 días de racha");
-        JLabel medalla3 = new JLabel("🏅 Maestro de la Rutina - 14 días de racha");
-        JLabel medalla4 = new JLabel("🥇 Leyenda de la Productividad - 30 días de racha");
-        JLabel medalla5 = new JLabel("🌟 Héroe Imparable - 60 días de racha");
-        JLabel medalla6 = new JLabel("🔥 Titán del Tiempo - 100 días de racha");
-
-        // Añadir las etiquetas al panel
-        panelMedallas.add(medalla1);
-        panelMedallas.add(medalla2);
-        panelMedallas.add(medalla3);
-        panelMedallas.add(medalla4);
-        panelMedallas.add(medalla5);
-        panelMedallas.add(medalla6);
-
-        // Añadir el panel a la ventana
-        ventanaMedallas.add(new JScrollPane(panelMedallas), BorderLayout.CENTER);
-
-        JButton botonSalir = new JButton("Salir");
-        botonSalir.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                ventanaMedallas.dispose(); 
-            }
-        });
-
-        // Añadir el botón "Salir" a la parte inferior de la ventana
-        ventanaMedallas.add(botonSalir, BorderLayout.SOUTH);
-
-        // Mostrar la ventana
-        ventanaMedallas.setVisible(true);
-    }
-
-   
     public static void main(String[] args) {
         Vista prueba = new Vista();
     }
