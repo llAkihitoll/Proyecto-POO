@@ -188,22 +188,6 @@ public class Vista  extends JFrame{
         /**
          * Crear una accion para que la informacion se guarde luego de precionar el boton 
          */
-        confirmacion.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                 /**
-                 * Usar la informacion para poder pasarla a String y que el programa lo entienda
-                 */
-                String Nombre = ing_nom_usuario.getText();// obtener la informacion sacada de la interfaz (Nombre del usuario )
-                //String Clave = ing_contrasena.getText();// obtener la informacion sacada de la interfaz (clave del usuario )
-                  /**
-                 * Guardar los componentes del usuario 
-                 */
-                
-                nuevoUsuario.setNombreUsuario(Nombre);// Guardar el nombre del usuario para poder ser usado en el codigo 
-                //nuevoUsuario.setClaveUsuario(Clave);// Guardar la clave del usuario para poder ser usado en el codigo 
-                app.agregarUsuario(nuevoUsuario);
-            }
-        });
         /**
          * Agregar el panel y el boton de confirmacion a la ventana
          */
@@ -212,6 +196,7 @@ public class Vista  extends JFrame{
 
         confirmacion.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e){
+                
                 ventana_principal();
                 registro.dispose();
             }
@@ -257,9 +242,6 @@ public class Vista  extends JFrame{
         dias.add(sabado);
 
 
-        String[] tareas2 = proxtar.toArray(new String[0]);
-        JList<String> lista_tareas2 = new JList<>(tareas2);
-        JScrollPane scrollPane1 = new JScrollPane(lista_tareas2);
         /**
          * Crear y agregar los botones de días al panel
          */
@@ -431,17 +413,21 @@ public class Vista  extends JFrame{
         JPanel listas = new JPanel();
         listas.setLayout(new GridLayout(3,1));
 
+        String[] tareas2 = nuevoUsuario.tareasprox().toArray(new String[0]);
+        JList<String> lista_tareas2 = new JList<>(tareas2);
+        JScrollPane scrollPane2 = new JScrollPane(lista_tareas2);
+
         String[] medallas = nuevoUsuario.getBadges().toArray(new String[0]);
         JList<String> lista_medallas = new JList<>(medallas);
-        JScrollPane scrollPane2 = new JScrollPane(lista_medallas);
+        JScrollPane scrollPane3 = new JScrollPane(lista_medallas);
 
         JButton bmedallas = new JButton("Medallas");
 
         /**
          * Agregar las componentes al panel
          */
-        listas.add(scrollPane1);
         listas.add(scrollPane2);
+        listas.add(scrollPane3);
         listas.add(bmedallas);
 
         /**
@@ -455,6 +441,18 @@ public class Vista  extends JFrame{
         principal.add(dias,BorderLayout.CENTER);
         principal.add(listas, BorderLayout.EAST);
         principal.add(salir, BorderLayout.SOUTH);
+
+        bmedallas.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e){
+                ventana_medallas();
+            }
+        });
+
+        salir.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e){
+                principal.dispose();
+            }
+        });
         
     }
 
@@ -641,85 +639,51 @@ public class Vista  extends JFrame{
         
     }
 
-    public void ventana_anadir_tarea(){
-        /**
-         * Crear un nueva ventana
-         */
-        JFrame anadir_tarea = new JFrame();
-        anadir_tarea.setTitle("Añadir tarea");
-        anadir_tarea.setSize(600, 300);
-        anadir_tarea.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        anadir_tarea.setVisible(true);
+    public void ventana_medallas() {
+        // Crear la ventana
+        JFrame ventanaMedallas = new JFrame("Medallas de Racha");
+        ventanaMedallas.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        ventanaMedallas.setSize(400, 300);
+        ventanaMedallas.setLayout(new BorderLayout());
 
-        /**
-         * Crear un nuevo panel para colocar las etiquetas y los campos de texto
-         */
-        JPanel info_tarea = new JPanel();
-        info_tarea.setLayout(new GridLayout(5,2));
-        /**
-         * Crear las componentes del panel (etiquetas y campos de texto)
-         */
-        JLabel nombre = new JLabel("Ingrese el nombre de la tarea");
-        JLabel prioridad = new JLabel("Ingrese la prioridad de la tarea (Del 1 al 3 siendo el maximo)");
-        JLabel duracion = new JLabel("Ingrese la duracion de la tarea");
-        JLabel detalles = new JLabel("Ingrese los detalles de la tarea");
+        // Crear un panel para la lista de medallas
+        JPanel panelMedallas = new JPanel();
+        panelMedallas.setLayout(new BoxLayout(panelMedallas, BoxLayout.Y_AXIS));
 
-        JTextField ing_nombre = new JTextField(20);
-        JTextField ing_prioridad = new JTextField(20);
-        JTextField ing_duracion = new JTextField(20);
-        JTextField ing_detalles = new JTextField(20);
+        // Crear etiquetas con nombres creativos de medallas y añadirlas al panel
+        JLabel medalla1 = new JLabel("🥉 Novato Consistente - 3 días de racha");
+        JLabel medalla2 = new JLabel("🥈 Guerrero de la Constancia - 7 días de racha");
+        JLabel medalla3 = new JLabel("🏅 Maestro de la Rutina - 14 días de racha");
+        JLabel medalla4 = new JLabel("🥇 Leyenda de la Productividad - 30 días de racha");
+        JLabel medalla5 = new JLabel("🌟 Héroe Imparable - 60 días de racha");
+        JLabel medalla6 = new JLabel("🔥 Titán del Tiempo - 100 días de racha");
 
-        /**
-         * Añadir las componentes al panel
-         */
-        info_tarea.add(nombre);
-        info_tarea.add(ing_nombre);
-        info_tarea.add(prioridad);
-        info_tarea.add(ing_prioridad);
-        info_tarea.add(duracion);
-        info_tarea.add(ing_duracion);
-        info_tarea.add(detalles);
-        info_tarea.add(ing_detalles);
+        // Añadir las etiquetas al panel
+        panelMedallas.add(medalla1);
+        panelMedallas.add(medalla2);
+        panelMedallas.add(medalla3);
+        panelMedallas.add(medalla4);
+        panelMedallas.add(medalla5);
+        panelMedallas.add(medalla6);
 
+        // Añadir el panel a la ventana
+        ventanaMedallas.add(new JScrollPane(panelMedallas), BorderLayout.CENTER);
 
-        /**
-         * Crear un boton para salir
-         */
-        JButton salir = new JButton("Agregar");
-         /**
-         * Crear un evento para poder guardar la informacion de las tareas al salir de la ventana 
-         */
-        salir.addActionListener(new ActionListener() {
+        JButton botonSalir = new JButton("Salir");
+        botonSalir.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                 /**
-                 * Usar la informacion para poder pasarla a String y que el programa lo entienda
-                 */
-                String Tarea = ing_nombre.getText();//Transformar la informacion par poder utilizarla (Nombre de la tarea )
-                int prioridad = Integer.parseInt(ing_prioridad.getText());//Transformar la informacion par poder utilizarla (Prioridad de la tarea en numeros enteros  )
-                double  tiempo = Double.parseDouble(ing_duracion.getText());//Transformar la informacion par poder utilizarla (Tiempo estimado de la tarea en double )
-                String detalle = ing_detalles.getText();//Transformar la informacion par poder utilizarla (Detalles de la tarea )
-                  /**
-                 * Guardar los componentes del usuario 
-                 */
-                Tarea nuevoTarea = new Tarea();
-                nuevoTarea.setNombreTarea(Tarea);// Guardar la informacion para poder usarlo en el codigo (Nombre de la tarea )
-                nuevoTarea.setPrioridad(prioridad);// Guardar la informacion para poder usarlo en el codigo(Prioridad de la tarea en numeros enteros  )
-                nuevoTarea.setDuracion(tiempo);// Guardar la informacion para poder usarlo en el codigo (Tiempo estimado de la tarea en double )
-                nuevoTarea.setDetalles(detalle);// Guardar la informacion para poder usarlo en el codigo(Detalles de la tarea )
-
-                anadir_tarea.dispose();
+                ventanaMedallas.dispose(); 
             }
         });
 
-        /**
-         * Añadir el panel y el boton a la ventana
-         */
-        anadir_tarea.add(info_tarea, BorderLayout.CENTER);
-        anadir_tarea.add(salir, BorderLayout.SOUTH);
+        // Añadir el botón "Salir" a la parte inferior de la ventana
+        ventanaMedallas.add(botonSalir, BorderLayout.SOUTH);
 
-
+        // Mostrar la ventana
+        ventanaMedallas.setVisible(true);
     }
 
+   
     public static void main(String[] args) {
         Vista prueba = new Vista();
     }
