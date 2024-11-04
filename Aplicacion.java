@@ -8,6 +8,7 @@ public class Aplicacion {
     private Horario horario; //se utilizará para generar un nuevo horario según las tareas pendientes
     private Pomodoro pomodoro; //se utilizará para crear un nuevo pomodoro
     private Tarea nuevatarea; //se utilizará para crear una nueva tarea
+    private static ArrayList<Usuario> usuarios = new ArrayList<>();
     //static private Badges nuevarecompensa;
 
     /**
@@ -153,6 +154,21 @@ public class Aplicacion {
 
     }
 
+    public Usuario buscarUsuario(String nombre){
+        Usuario us = new Usuario();
+        nombre = nombre.toLowerCase();
+        for(Usuario i : usuarios){
+            if(nombre.equals(i.getNombreUsuario().toLowerCase())){
+                us = i;
+            }
+        }
+
+        return us;
+    }
+
+    public void agregarUsuario(Usuario newusuario){
+        usuarios.add(newusuario);
+    }
     //public Badges MostrarRecompensa(){}
 
 

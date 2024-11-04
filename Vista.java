@@ -6,6 +6,7 @@ import java.util.ArrayList;
 public class Vista  extends JFrame{
     Usuario nuevoUsuario = new Usuario();
     ArrayList<String> proxtar = new ArrayList<>();
+    Aplicacion app = new Aplicacion();
     public Vista(){
         /**
          * Crear la ventana que se desplegará cuando el ususario inicie la aplicación
@@ -119,6 +120,7 @@ public class Vista  extends JFrame{
                   /**
                  * Falta verificacion del usuario 
                  */
+                nuevoUsuario = app.buscarUsuario(Nombre);
             }
         });
 
@@ -199,6 +201,7 @@ public class Vista  extends JFrame{
                 
                 nuevoUsuario.setNombreUsuario(Nombre);// Guardar el nombre del usuario para poder ser usado en el codigo 
                 //nuevoUsuario.setClaveUsuario(Clave);// Guardar la clave del usuario para poder ser usado en el codigo 
+                app.agregarUsuario(nuevoUsuario);
             }
         });
         /**
@@ -609,7 +612,6 @@ public class Vista  extends JFrame{
         /**
          * Crear una nueva ventana
          */
-        Aplicacion app = new Aplicacion();
         JFrame ventanapomodoro = new JFrame();
         ventanapomodoro.setTitle("Pomodoro");
         ventanapomodoro.setSize(350, 200);
