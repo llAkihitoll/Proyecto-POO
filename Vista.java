@@ -622,7 +622,7 @@ public class Vista  extends JFrame{
          * Crear un nuevo panel para colocar la información sobre el pomodoro 
          */
         JPanel mostrar = new JPanel();
-        mostrar.setLayout(new GridLayout(2, 1)); // Cambiar a 2 filas
+        mostrar.setLayout(new GridLayout(4, 1)); // Cambiar a 4 filas
     
         /** 
          * Crear un campo de texto para que el usuario ingrese el tiempo 
@@ -643,7 +643,11 @@ public class Vista  extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 int tiempo = Integer.parseInt(tiempoField.getText()); // Obtener el tiempo ingresado
-                // Aquí podrías llamar al método iniciar_pomodoro(tiempo) si es necesario
+                int duracionPomodoro = tiempoMinutos * 60;
+
+                Timer timer = new Timer(1000, new ActionListener() {
+                    int tiempoTranscurrido = 0;
+                    
                 JOptionPane.showMessageDialog(ventanapomodoro, "Pomodoro de " + tiempo + " minutos iniciado.");
                 // El resto de la lógica se implementará en la barra de progreso por tu compañero
             }
