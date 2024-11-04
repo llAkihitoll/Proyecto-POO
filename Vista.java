@@ -651,7 +651,7 @@ public class Vista  extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 int tiempo = Integer.parseInt(tiempoField.getText()); // Obtener el tiempo ingresado
-                int duracionPomodoro = tiempoMinutos * 60;// Convertir minutos a segundos
+                int duracionPomodoro = tiempo * 60;// Convertir minutos a segundos
 
                 Timer timer = new Timer(1000, new ActionListener() {
                     int tiempoTranscurrido = 0;
