@@ -15,6 +15,10 @@ public class Usuario {
      */
     private String nombreUsuario; 
     /**
+     * Contrasena
+     */
+    private String contrasena;
+    /**
      * Numero de dias consecutivos que el usuario ha completado sus tareas asignadas.
      */
     private int rachaDeDias; 
@@ -32,6 +36,8 @@ public class Usuario {
 public Usuario() {
     this.nombreUsuario = "";
     this.rachaDeDias = 0;
+    this.nombreUsuario = "";
+    this.contrasena = "";
     this.tareas = new ArrayList<>();
     this.badges = new ArrayList<>();
 }
@@ -40,13 +46,15 @@ public Usuario() {
  * 
  * @param nombreUsuario
  * @param rachaDeDias
+ * @param contrasena
  */
-    public Usuario(String nombreUsuario, int rachaDeDias) {
-        this.nombreUsuario = nombreUsuario;
-        this.rachaDeDias = rachaDeDias;
-        this.tareas = new ArrayList<>();
-        this.badges = new ArrayList<>();
-    }
+public Usuario(String nombreUsuario, int rachaDeDias, String contrasena) {
+    this.nombreUsuario = nombreUsuario;
+    this.rachaDeDias = rachaDeDias;
+    this.contrasena = contrasena;
+    this.tareas = new ArrayList<>();
+    this.badges = new ArrayList<>();
+}
 /**
  * Establece el nombre del usuario
  * @param nombreUsuario
@@ -86,6 +94,8 @@ public Usuario() {
     public void setTareas(ArrayList<Tarea> tareas) {
         this.tareas = tareas;
     }
+
+
 /**
  * Obtiene la lista de tareas del usuario
  * @return <Tarea>
@@ -107,5 +117,20 @@ public Usuario() {
  */
     public ArrayList<Badges> getBadges() {
         return badges;
+    }
+/**
+ * Obtiene la contrasena del usuario
+ * @return contrasena
+ */
+    public String getContrasena() {
+        return contrasena;
+    }
+/**
+ *  Establece la contrasena del usuario
+ * 
+ * @param contrasena
+ */
+    public void setContrasena(String contrasena) {
+        this.contrasena = contrasena;
     }
 }
