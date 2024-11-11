@@ -13,6 +13,7 @@ public class Vista  extends JFrame{
     private JFrame ingreso, inicio_sesion, registro;
     private JPanel interaccion_ingreso, interaccion_inicio_sesion, interaccion_registro;
     private JButton iniciar_sesion, registrarse;
+    private DefaultListModel<String> modelolista, modelolista2;
     public Vista(){
         app = new Aplicacion();
         /**
@@ -268,6 +269,20 @@ public class Vista  extends JFrame{
         principal.setSize(1000, 500);
         principal.setVisible(true);
 
+        String[] tareas2 = app.getUsuario().tareasprox().toArray(new String[0]);
+        modelolista = new DefaultListModel<>();
+        modelolista.addElement("Tareas no completadas de alta prioridad");
+        for(String i : tareas2){
+            modelolista.addElement(i);
+        }
+
+        String[] medallas = app.getUsuario().getBadges().toArray(new String[0]);
+        modelolista2 = new DefaultListModel<>();
+        modelolista2.addElement("Medallas");
+        for(String k : medallas){
+            modelolista2.addElement(k);
+        }
+
         /**
          * Crear un nuevo panel para poder agregar el calendario
          */
@@ -463,6 +478,10 @@ public class Vista  extends JFrame{
                                     nuevoTarea.setDetalles(detalle);// Guardar la informacion para poder usarlo en el codigo(Detalles de la tarea )
                                     app.AddTarea(Tarea, prioridad, tiempo, detalle, k);
 
+                                    if(!Tarea.isEmpty() && prioridad == 3){
+                                        modelolista.addElement(Tarea);
+                                    }
+
                                     anadir_tarea.dispose();
                                 }
                             });
@@ -489,25 +508,29 @@ public class Vista  extends JFrame{
         /**
          * Crear otro panel para poder tener la lista de tareas proximas, medallas y el boton de medallas
          */
-        JPanel listas = new JPanel();
-        listas.setLayout(new GridLayout(3,1));
-
-        String[] tareas2 = app.getUsuario().tareasprox().toArray(new String[0]);
-        JList<String> lista_tareas2 = new JList<>(tareas2);
+        JPanel listas = new JPanel(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.insets = new Insets(5, 5, 5, 5); // Márgenes entre componentes
+        
+        JList<String> lista_tareas2 = new JList<>(modelolista);
         JScrollPane scrollPane2 = new JScrollPane(lista_tareas2);
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        scrollPane2.setPreferredSize(new Dimension(250, 150));
+        listas.add(scrollPane2, gbc);
 
-        String[] medallas = app.getUsuario().getBadges().toArray(new String[0]);
-        JList<String> lista_medallas = new JList<>(medallas);
+        JList<String> lista_medallas = new JList<>(modelolista2);
         JScrollPane scrollPane3 = new JScrollPane(lista_medallas);
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        scrollPane3.setPreferredSize(new Dimension(250, 150));
+        listas.add(scrollPane3, gbc);
 
         JButton bmedallas = new JButton("Medallas");
-
-        /**
-         * Agregar las componentes al panel
-         */
-        listas.add(scrollPane2);
-        listas.add(scrollPane3);
-        listas.add(bmedallas);
+        gbc.gridx = 0;
+        gbc.gridy = 2;
+        bmedallas.setPreferredSize(new Dimension(100, 25));
+        listas.add(bmedallas, gbc);
 
         /**
          * Crear un boton para salir

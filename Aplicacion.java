@@ -163,7 +163,7 @@ public class Aplicacion {
             }
         }
 
-        usuarioactual = us;
+        this.usuarioactual = us;
     }
 
     public Usuario getUsuario(){
