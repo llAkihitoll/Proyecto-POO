@@ -2,48 +2,73 @@ import java.awt.*;
 import javax.swing.*;
 import java.awt.event.*;
 import java.util.ArrayList;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
 
 public class Vista  extends JFrame{
-    Usuario nuevoUsuario = new Usuario();
-    ArrayList<String> proxtar = new ArrayList<>();
-    Aplicacion app = new Aplicacion();
+    private Aplicacion app ;
+    private JFrame ingreso, inicio_sesion, registro;
+    private JPanel interaccion_ingreso, interaccion_inicio_sesion, interaccion_registro;
+    private JButton iniciar_sesion, registrarse;
     public Vista(){
+        app = new Aplicacion();
         /**
          * Crear la ventana que se desplegará cuando el ususario inicie la aplicación
          * En esta se le preguntará si desea registrarse o iniciar sesión
          */
-        JFrame ingreso = new JFrame();
+        ingreso = new JFrame();
+        ingreso.getContentPane().setBackground(Color.WHITE);
         ingreso.setTitle("App manejo de tiempo");
         ingreso.setVisible(true);
         ingreso.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        ingreso.setSize(400,300);
+        ingreso.setSize(350,500);
 
         /**
          * Crear un nuevo panel para poder agregar el texto para comunicarse con el usuario y los botones para que decida que hacer
          */
-        JPanel interaccion_ingreso = new JPanel();
-        interaccion_ingreso.setLayout(new GridLayout(3,1)); 
+        interaccion_ingreso = new JPanel();
+        interaccion_ingreso.setLayout(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.insets = new Insets(5, 5, 5, 5); 
 
+        ImageIcon icono = new ImageIcon("tomate.png");
+        JLabel imagen = new JLabel(icono);
+        gbc.gridx=0;
+        gbc.gridy=0;
+        gbc.gridwidth=2;
+        interaccion_ingreso.add(imagen, gbc);
+        
         /**
          * Crear la etiqueta de texto para informarle al usuario que esta es la ventana de ingreso
          */
-
          JLabel info = new JLabel("Bienvenido al programa de manejo de tiempo");
+         gbc.gridx = 0;
+         gbc.gridy = 1;
+         gbc.gridwidth = 2;
+         interaccion_ingreso.add(info, gbc); //se agrega a la primera fila
+
 
          /**
           * Crear botones para que el usuario elija si desea iniciar sesión o registrarse
           * Es decir, si ya tiene usuario o quiere crear uno
           */
 
-          JButton iniciar_sesion = new JButton("Iniciar sesión");
-          JButton registrarse = new JButton("Registrarse");
-
-          /**
-           * Agregar las componentes al panel (importa el orden)
-           */
-           interaccion_ingreso.add(info); //se agrega a la primera fila
-           interaccion_ingreso.add(iniciar_sesion); // se agrega a la segunda fila
-           interaccion_ingreso.add(registrarse); // se agrega a la tercera fila
+          iniciar_sesion = new JButton("Iniciar sesión");
+          gbc.gridx = 0;
+          gbc.gridy = 2;
+          gbc.gridwidth = 2;
+          interaccion_ingreso.setPreferredSize(new Dimension(120,25));
+          interaccion_ingreso.add(iniciar_sesion, gbc); // se agrega a la segunda fila
+          
+          registrarse = new JButton("Registrarse");
+          gbc.gridx = 0;
+          gbc.gridy = 3;
+          gbc.gridwidth = 2;
+          registrarse.setPreferredSize(new Dimension(110,25));
+          interaccion_ingreso.add(registrarse, gbc); // se agrega a la tercera fila
 
            /**
             * Agregar el panel la ventana
@@ -73,7 +98,7 @@ public class Vista  extends JFrame{
         /**
          * Crear una nueva ventana para llevar a cabo el incio de sesión 
          */
-        JFrame inicio_sesion = new JFrame();
+        inicio_sesion = new JFrame();
         inicio_sesion.setTitle("App manejo del tiempo - Inicio sesión");
         inicio_sesion.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         inicio_sesion.setSize(500, 250);
@@ -82,31 +107,44 @@ public class Vista  extends JFrame{
         /**
          * Crear panel para agregar los componentes de la ventana
          */
-        JPanel interaccion_inicio_sesion = new JPanel();
-        interaccion_inicio_sesion.setLayout(new GridLayout(2,2));
+        interaccion_inicio_sesion = new JPanel();
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.insets = new Insets(5, 5, 5, 5);
+        interaccion_inicio_sesion.setLayout(new GridBagLayout());
 
         /**
          * Crear las componentes del panel: etiquetas de texto para indicar que se debe ingresar en cada campo de texto y dichos campos de texto
          */
-        JLabel nom_usuario = new JLabel("Ingrese nombre de usuario");
-        JLabel contrasena = new JLabel("Ingrese contraseña");
+        JLabel nom_usuario = new JLabel("Ingrese nombre de usuario: ");
+        gbc.gridx = 0;
+        gbc.gridy=0;
+        interaccion_inicio_sesion.add(nom_usuario, gbc);
+
+        JLabel contrasena = new JLabel("Ingrese contraseña: ");
+        gbc.gridx = 0;
+        gbc.gridy=1;
+        interaccion_inicio_sesion.add(contrasena, gbc);
 
         JTextField ing_nom_usuario = new JTextField(20);
-        JPasswordField ing_contrasena = new JPasswordField(20);
+        gbc.gridx = 1;
+        gbc.gridy=0;
+        interaccion_inicio_sesion.add(ing_nom_usuario, gbc);
 
-        /**
-         * Agregar las componentes al panel
-         */
-        interaccion_inicio_sesion.add(nom_usuario); // se agrega a la fila 1 columna 1
-        interaccion_inicio_sesion.add(ing_nom_usuario); //se agrega a la fila 1 columna 2
-        interaccion_inicio_sesion.add(contrasena); //se agrega a la fila 2 columna 1
-        interaccion_inicio_sesion.add(ing_contrasena); //se agrega a la fila 2 columna 2
+        JPasswordField ing_contrasena = new JPasswordField(20);
+        gbc.gridx = 1;
+        gbc.gridy = 1;
+        interaccion_inicio_sesion.add(ing_contrasena, gbc); //se agrega a la fila 2 columna 2
 
         /**
          * Crear un botón de confirmacion 
          */
         JButton confirmacion = new JButton("Aceptar");
-        confirmacion.setSize(200,100);
+        confirmacion.setPreferredSize(new Dimension(100,25));
+        gbc.gridx = 0;
+        gbc.gridy=2;
+        gbc.gridwidth = 2;
+        interaccion_inicio_sesion.add(confirmacion, gbc);
+
          /**
          * Crear una accion para que la informacion se guarde luego de precionar el boton 
          */
@@ -120,7 +158,7 @@ public class Vista  extends JFrame{
                   /**
                  * Falta verificacion del usuario 
                  */
-                nuevoUsuario = app.buscarUsuario(Nombre);
+                app.buscarUsuario(Nombre);
             }
         });
 
@@ -128,7 +166,6 @@ public class Vista  extends JFrame{
          * Agregar el panel y boton de confirmacion a la ventana
          */
         inicio_sesion.add(interaccion_inicio_sesion, BorderLayout.CENTER);
-        inicio_sesion.add(confirmacion, BorderLayout.SOUTH);
 
         confirmacion.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e){
@@ -146,7 +183,7 @@ public class Vista  extends JFrame{
         /**
          * Crear una nueva ventana para poder llevar a cabo el registro
          */
-        JFrame registro = new JFrame();
+        registro = new JFrame();
         registro.setTitle("App manejo del tiempo - Registro");
         registro.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         registro.setSize(500, 250);
@@ -155,50 +192,68 @@ public class Vista  extends JFrame{
         /**
          * Crear panel para agregar los componentes de la ventana
          */
-        JPanel interaccion_registro = new JPanel();
-        interaccion_registro.setLayout(new GridLayout(3,2));
+        interaccion_registro = new JPanel();
+        interaccion_registro.setLayout(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.insets = new Insets(5, 5, 5, 5);
 
         /**
          * Crear las componentes del panel: etiquetas de texto para indicar que se debe ingresar en cada campo de texto y dichos campos de texto
          */
-        JLabel nom_usuario = new JLabel("Ingrese su nombre de usuario");
-        JLabel contrasena = new JLabel("Ingrese su contraseña");
+        JLabel nom_usuario = new JLabel("Ingrese su nombre de usuario: ");
+        gbc.gridx = 0;
+        gbc.gridy=0;
+        interaccion_registro.add(nom_usuario, gbc);
+
+        JLabel contrasena = new JLabel("Ingrese su contraseña: ");
+        gbc.gridx = 0;
+        gbc.gridy=1;
+        interaccion_registro.add(contrasena, gbc);
+
         JLabel confirm_contrasena = new JLabel("Confirme su contraseña");
+        gbc.gridx = 0;
+        gbc.gridy=2;
+        interaccion_registro.add(confirm_contrasena, gbc);
 
         JTextField ing_nom_usuario = new JTextField(20);
-        JPasswordField ing_contrasena = new JPasswordField(20);
-        JPasswordField ing_confirm_contrasena = new JPasswordField(20);
-        
+        gbc.gridx = 1;
+        gbc.gridy=0;
+        interaccion_registro.add(ing_nom_usuario, gbc);
 
-        /**
-         * Agregar las componentes al panel
-         */
-        interaccion_registro.add(nom_usuario); //se agrega a la primera fila primera columna
-        interaccion_registro.add(ing_nom_usuario); //se agrega a la primera fila segunda columna
-        interaccion_registro.add(contrasena); //se agrega a la segunda fila primera columna
-        interaccion_registro.add(ing_contrasena); //se agrega a la segunda fila segunda columna
-        interaccion_registro.add(confirm_contrasena); //se agrega a la tercera fila primera columna
-        interaccion_registro.add(ing_confirm_contrasena); //se agrega a la tercera fila segunda columna
+        JPasswordField ing_contrasena = new JPasswordField(20);
+        gbc.gridx = 1;
+        gbc.gridy=1;
+        interaccion_registro.add(ing_contrasena, gbc);
+
+        JPasswordField ing_confirm_contrasena = new JPasswordField(20);
+        gbc.gridx = 1;
+        gbc.gridy=2;
+        interaccion_registro.add(ing_confirm_contrasena, gbc);
+        
 
         /**
          * Crear un botón de confirmacion 
          */
         JButton confirmacion = new JButton("Aceptar");
-        confirmacion.setSize(200,100);
+        gbc.gridx=0;
+        gbc.gridy=3;
+        gbc.gridwidth=2;
+        interaccion_registro.add(confirmacion, gbc);
+
         /**
          * Crear una accion para que la informacion se guarde luego de precionar el boton 
          */
         /**
          * Agregar el panel y el boton de confirmacion a la ventana
          */
-        registro.add(interaccion_registro, BorderLayout.CENTER);
-        registro.add(confirmacion, BorderLayout.SOUTH);
+        registro.add(interaccion_registro);
 
         confirmacion.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e){
                 
                 ventana_principal();
                 registro.dispose();
+                app.AgregarUsuario(ing_nom_usuario.getText());
             }
         });
     }
@@ -210,7 +265,7 @@ public class Vista  extends JFrame{
         JFrame principal = new JFrame();
         principal.setTitle("App manejo del tiempo - Principal");
         principal.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        principal.setSize(800, 500);
+        principal.setSize(1000, 500);
         principal.setVisible(true);
 
         /**
@@ -265,14 +320,17 @@ public class Vista  extends JFrame{
                     /**
                      * Crear un panel para colocar las tareas del día en un scrollpane
                      */
-                    JPanel lista_tareas = new JPanel();
+                    JPanel lista_tareas = new JPanel(new GridBagLayout());
+                    GridBagConstraints gbc = new GridBagConstraints();
+                    gbc.insets = new Insets(5, 5, 5, 5); // Márgenes entre componentes
 
                     /**
                      * Crear la componente del panel que será una lista
                      */
-                    String[] tareas = nuevoUsuario.nomyprioridad().get(k).toArray(new String[0]);
+                    String[] tareas = app.getUsuario().nomyprioridad().get(k).toArray(new String[0]);
                     JList<String> usuario_tareas = new JList<>(tareas);
                     JScrollPane scrollPane1 = new JScrollPane(usuario_tareas);
+                    scrollPane1.setPreferredSize(new Dimension(90,120));
 
                     /**
                      * Agregar la lista al panel
@@ -282,32 +340,37 @@ public class Vista  extends JFrame{
                     /**
                      * Crear un nuevo panel para colocar los botones para agregar tarea e iniciar un nuevo pomodoro
                      */
-                    JPanel opciones = new JPanel();
-                    opciones.setLayout(new GridLayout(2, 1));
+                    JPanel opciones = new JPanel(new GridBagLayout());
 
                     /**
                      * Crear las componentes del panel
                      */
                     JButton agregar_tarea = new JButton("Agregar tarea");
-                    JButton pomodoro =  new JButton("Pomodoro");
+                    gbc.gridx = 0;
+                    gbc.gridy = 0;
+                    agregar_tarea.setPreferredSize(new Dimension(100,25));
+                    opciones.add(agregar_tarea, gbc);
 
-                    /**
-                     * Agregar los botones al panel
-                     */
-                    opciones.add(agregar_tarea);
-                    opciones.add(pomodoro);
+                    JButton pomodoro =  new JButton("Pomodoro");
+                    gbc.gridx = 0;
+                    gbc.gridy = 1;
+                    pomodoro.setPreferredSize(new Dimension(100,25));
+                    opciones.add(pomodoro, gbc);
                     
                     /**
                      * Crear un boton para salir
                      */
                     JButton salir = new JButton("Salir");
+                    gbc.gridx = 0;
+                    gbc.gridy = 2;
+                    salir.setPreferredSize(new Dimension(100,25));
+                    opciones.add(salir, gbc);
 
                     /**
                      * Agregar los paneles y el boton de salir a la ventana
                      */
                     ventanadia.add(lista_tareas, BorderLayout.CENTER);
                     ventanadia.add(opciones, BorderLayout.EAST);
-                    ventanadia.add(salir, BorderLayout.SOUTH);
 
                     pomodoro.addActionListener(new ActionListener(){
                         public void actionPerformed(ActionEvent e){
@@ -329,37 +392,55 @@ public class Vista  extends JFrame{
                              * Crear un nuevo panel para colocar las etiquetas y los campos de texto
                              */
                             JPanel info_tarea = new JPanel();
-                            info_tarea.setLayout(new GridLayout(5,2));
+                            info_tarea.setLayout(new GridBagLayout());
+                            GridBagConstraints gbc = new GridBagConstraints();
+                            gbc.insets = new Insets(5, 5, 5, 5); // Márgenes entre componentes
                             /**
                              * Crear las componentes del panel (etiquetas y campos de texto)
                              */
                             JLabel nombre = new JLabel("Ingrese el nombre de la tarea");
+                            gbc.gridx = 0;
+                            gbc.gridy = 0;
+                            info_tarea.add(nombre, gbc);
                             JLabel prioridad = new JLabel("Ingrese la prioridad de la tarea (Del 1 al 3 siendo el maximo)");
+                            gbc.gridx = 0;
+                            gbc.gridy = 1;
+                            info_tarea.add(prioridad, gbc);
                             JLabel duracion = new JLabel("Ingrese la duracion de la tarea");
+                            gbc.gridx = 0;
+                            gbc.gridy = 2;
+                            info_tarea.add(duracion, gbc);
                             JLabel detalles = new JLabel("Ingrese los detalles de la tarea");
+                            gbc.gridx = 0;
+                            gbc.gridy = 3;
+                            info_tarea.add(detalles, gbc);
 
                             JTextField ing_nombre = new JTextField(20);
+                            gbc.gridx = 1;
+                            gbc.gridy = 0;
+                            info_tarea.add(ing_nombre, gbc);
                             JTextField ing_prioridad = new JTextField(20);
+                            gbc.gridx = 1;
+                            gbc.gridy = 1;
+                            info_tarea.add(ing_prioridad, gbc);
                             JTextField ing_duracion = new JTextField(20);
+                            gbc.gridx = 1;
+                            gbc.gridy = 2;
+                            info_tarea.add(ing_duracion, gbc);
                             JTextField ing_detalles = new JTextField(20);
-
-                            /**
-                             * Añadir las componentes al panel
-                             */
-                            info_tarea.add(nombre);
-                            info_tarea.add(ing_nombre);
-                            info_tarea.add(prioridad);
-                            info_tarea.add(ing_prioridad);
-                            info_tarea.add(duracion);
-                            info_tarea.add(ing_duracion);
-                            info_tarea.add(detalles);
-                            info_tarea.add(ing_detalles);
+                            gbc.gridx = 1;
+                            gbc.gridy = 3;
+                            info_tarea.add(ing_detalles, gbc);
 
 
                             /**
                              * Crear un boton para salir
                              */
                             JButton salir = new JButton("Agregar");
+                            gbc.gridx = 0;
+                            gbc.gridy=4;
+                            gbc.gridwidth = 2;
+                            info_tarea.add(salir, gbc);
                             /**
                              * Crear un evento para poder guardar la informacion de las tareas al salir de la ventana 
                              */
@@ -380,9 +461,8 @@ public class Vista  extends JFrame{
                                     nuevoTarea.setPrioridad(prioridad);// Guardar la informacion para poder usarlo en el codigo(Prioridad de la tarea en numeros enteros  )
                                     nuevoTarea.setDuracion(tiempo);// Guardar la informacion para poder usarlo en el codigo (Tiempo estimado de la tarea en double )
                                     nuevoTarea.setDetalles(detalle);// Guardar la informacion para poder usarlo en el codigo(Detalles de la tarea )
-                                    nuevoUsuario.agregartarea(k, nuevoTarea);
+                                    app.AddTarea(Tarea, prioridad, tiempo, detalle, k);
 
-                                    proxtar = nuevoUsuario.tareasprox();
                                     anadir_tarea.dispose();
                                 }
                             });
@@ -391,7 +471,6 @@ public class Vista  extends JFrame{
                              * Añadir el panel y el boton a la ventana
                              */
                             anadir_tarea.add(info_tarea, BorderLayout.CENTER);
-                            anadir_tarea.add(salir, BorderLayout.SOUTH);
                             //
                         }
                     });
@@ -413,11 +492,11 @@ public class Vista  extends JFrame{
         JPanel listas = new JPanel();
         listas.setLayout(new GridLayout(3,1));
 
-        String[] tareas2 = nuevoUsuario.tareasprox().toArray(new String[0]);
+        String[] tareas2 = app.getUsuario().tareasprox().toArray(new String[0]);
         JList<String> lista_tareas2 = new JList<>(tareas2);
         JScrollPane scrollPane2 = new JScrollPane(lista_tareas2);
 
-        String[] medallas = nuevoUsuario.getBadges().toArray(new String[0]);
+        String[] medallas = app.getUsuario().getBadges().toArray(new String[0]);
         JList<String> lista_medallas = new JList<>(medallas);
         JScrollPane scrollPane3 = new JScrollPane(lista_medallas);
 

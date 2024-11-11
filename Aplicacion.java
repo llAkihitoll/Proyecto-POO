@@ -16,8 +16,6 @@ public class Aplicacion {
      */
     public Aplicacion(){
         usuarioactual = new Usuario();
-        pomodoro = new Pomodoro();
-        horario = new Horario();
 
     }
 
@@ -26,6 +24,7 @@ public class Aplicacion {
      */
     public void AgregarUsuario(String nombreUsuario){
         usuarioactual.setNombreUsuario(nombreUsuario);
+        usuarios.add(usuarioactual);
     }
 
     /**
@@ -71,12 +70,13 @@ public class Aplicacion {
     /**
      * Metodo para agregar una tarea
      */
-    public void AddTarea(String nombreTarea, int prioridad,  double duracion, String detalles){
+    public void AddTarea(String nombreTarea, int prioridad,  double duracion, String detalles, int pos){
         nuevatarea = new Tarea();
         nuevatarea.setNombreTarea(nombreTarea);
         nuevatarea.setPrioridad(prioridad);
         nuevatarea.setDuracion(duracion);
         nuevatarea.setDetalles(detalles);
+        usuarioactual.agregartarea(pos, nuevatarea);
     }
 
     /**
@@ -154,7 +154,7 @@ public class Aplicacion {
 
     }
 
-    public Usuario buscarUsuario(String nombre){
+    public void buscarUsuario(String nombre){
         Usuario us = new Usuario();
         nombre = nombre.toLowerCase();
         for(Usuario i : usuarios){
@@ -163,13 +163,11 @@ public class Aplicacion {
             }
         }
 
-        return us;
+        usuarioactual = us;
     }
 
-    public void agregarUsuario(Usuario newusuario){
-        usuarios.add(newusuario);
+    public Usuario getUsuario(){
+        return usuarioactual;
     }
-    //public Badges MostrarRecompensa(){}
-
 
 }
