@@ -111,13 +111,22 @@ public Usuario(String nombreUsuario, int rachaDeDias, String contrasena) {
     public void setBadges(ArrayList<Badges> badges) {
         this.badges = badges;
     }
+
+/**
+ *  añade un badge al usuario
+ * 
+ * @param badges
+ */
+public void addBadge(Badges badge) {
+    this.badges.add(badge);
+}
 /**
  * Obtiene los badges del usuario
  * @return <badges>
  */
-    public ArrayList<Badges> getBadges() {
-        return badges;
-    }
+public ArrayList<Badges> getAllBadges() {
+    return this.badges;
+}
 /**
  * Obtiene la contrasena del usuario
  * @return contrasena
@@ -130,7 +139,12 @@ public Usuario(String nombreUsuario, int rachaDeDias, String contrasena) {
  * 
  * @param contrasena
  */
-    public void setContrasena(String contrasena) {
-        this.contrasena = contrasena;
+public void setContrasena(String contrasena) {
+    if (contrasena.length() < 8) {
+        throw new IllegalArgumentException("La contraseña debe tener al menos 8 caracteres.");
     }
+    this.contrasena = contrasena;
+    }
+
+
 }
