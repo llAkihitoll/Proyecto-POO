@@ -25,12 +25,13 @@ public class Vista  extends JFrame{
         ingreso.setTitle("App manejo de tiempo");
         ingreso.setVisible(true);
         ingreso.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        ingreso.setSize(350,500);
+        ingreso.setSize(450,600);
 
         /**
          * Crear un nuevo panel para poder agregar el texto para comunicarse con el usuario y los botones para que decida que hacer
          */
         interaccion_ingreso = new JPanel();
+        ingreso.getContentPane().setBackground(new Color(36, 123, 160)); // Cambiar el color del fondo 
         interaccion_ingreso.setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(5, 5, 5, 5); 
@@ -41,11 +42,13 @@ public class Vista  extends JFrame{
         gbc.gridy=0;
         gbc.gridwidth=2;
         interaccion_ingreso.add(imagen, gbc);
+        interaccion_ingreso.setBackground(new Color(194,194,209));// Fondo de pantalla inicial 
         
         /**
          * Crear la etiqueta de texto para informarle al usuario que esta es la ventana de ingreso
          */
-         JLabel info = new JLabel("Bienvenido al programa de manejo de tiempo");
+         JLabel info = new JLabel("Bienvenido a Tomate tu tiempo");
+         info.setFont(new Font("Arial", Font.PLAIN, 18)); // Cabiar el tama;o y el font de el mensaje de inicio 
          gbc.gridx = 0;
          gbc.gridy = 1;
          gbc.gridwidth = 2;
@@ -58,17 +61,21 @@ public class Vista  extends JFrame{
           */
 
           iniciar_sesion = new JButton("Iniciar sesión");
+          iniciar_sesion.setBackground(new Color(36, 123, 160));// Cambiar el color del boton 
+          iniciar_sesion.setForeground(Color.WHITE); // Cambiar el color de la letra a blanco 
           gbc.gridx = 0;
           gbc.gridy = 2;
           gbc.gridwidth = 2;
-          interaccion_ingreso.setPreferredSize(new Dimension(120,25));
+          interaccion_ingreso.setPreferredSize(new Dimension(150,50));
           interaccion_ingreso.add(iniciar_sesion, gbc); // se agrega a la segunda fila
           
           registrarse = new JButton("Registrarse");
+          registrarse.setBackground(new Color(36, 123, 160));// Cambiar el color del boton 
+          registrarse.setForeground(Color.WHITE);// Cambiar el color de la letra a blanco 
           gbc.gridx = 0;
           gbc.gridy = 3;
           gbc.gridwidth = 2;
-          registrarse.setPreferredSize(new Dimension(110,25));
+          registrarse.setPreferredSize(new Dimension(115,27));
           interaccion_ingreso.add(registrarse, gbc); // se agrega a la tercera fila
 
            /**
