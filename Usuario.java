@@ -64,6 +64,9 @@ public Usuario() {
  * @param nombreUsuario
  */
     public void setClaveUsuario(String claveusuario) {
+        if (claveusuario.length() < 8) {
+            throw new IllegalArgumentException("La contraseña debe tener al menos 8 caracteres.");
+        }
         this.claveusuario = claveusuario;
     }
 /**
