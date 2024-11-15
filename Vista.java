@@ -108,6 +108,7 @@ public class Vista  extends JFrame{
          */
         inicio_sesion = new JFrame();
         inicio_sesion.setTitle("App manejo del tiempo - Inicio sesión");
+        inicio_sesion.setBackground(new Color(246, 221, 176));
         inicio_sesion.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         inicio_sesion.setSize(500, 250);
         inicio_sesion.setVisible(true);
@@ -116,6 +117,7 @@ public class Vista  extends JFrame{
          * Crear panel para agregar los componentes de la ventana
          */
         interaccion_inicio_sesion = new JPanel();
+        interaccion_inicio_sesion.setBackground(new Color(246, 221, 176));
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(5, 5, 5, 5);
         interaccion_inicio_sesion.setLayout(new GridBagLayout());
@@ -134,11 +136,13 @@ public class Vista  extends JFrame{
         interaccion_inicio_sesion.add(contrasena, gbc);
 
         JTextField ing_nom_usuario = new JTextField(20);
+        ing_nom_usuario.setBackground(new Color(123, 197, 105));// Cambiar fondo del area de usuario
         gbc.gridx = 1;
         gbc.gridy=0;
         interaccion_inicio_sesion.add(ing_nom_usuario, gbc);
 
         JPasswordField ing_contrasena = new JPasswordField(20);
+        ing_contrasena.setBackground(new Color(123, 197, 105));// cambiar fondo de el area de contrase;a 
         gbc.gridx = 1;
         gbc.gridy = 1;
         interaccion_inicio_sesion.add(ing_contrasena, gbc); //se agrega a la fila 2 columna 2
@@ -148,6 +152,8 @@ public class Vista  extends JFrame{
          */
         JButton confirmacion = new JButton("Aceptar");
         confirmacion.setPreferredSize(new Dimension(100,25));
+        confirmacion.setBackground(new Color(36, 123, 160));//Cambiar el color del boton 
+        confirmacion.setForeground(Color.WHITE);// Poner las letras de color blanco 
         gbc.gridx = 0;
         gbc.gridy=2;
         gbc.gridwidth = 2;
@@ -194,6 +200,7 @@ public class Vista  extends JFrame{
         registro = new JFrame();
         registro.setTitle("App manejo del tiempo - Registro");
         registro.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        registro.setBackground(new Color(246, 221, 176));
         registro.setSize(500, 250);
         registro.setVisible(true);
 
@@ -201,6 +208,7 @@ public class Vista  extends JFrame{
          * Crear panel para agregar los componentes de la ventana
          */
         interaccion_registro = new JPanel();
+        interaccion_registro.setBackground(new Color(246, 221, 176));
         interaccion_registro.setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(5, 5, 5, 5);
@@ -224,16 +232,22 @@ public class Vista  extends JFrame{
         interaccion_registro.add(confirm_contrasena, gbc);
 
         JTextField ing_nom_usuario = new JTextField(20);
+        ing_nom_usuario.setBackground(new Color(123, 197, 105));
+        ing_nom_usuario.setForeground(Color.black);
         gbc.gridx = 1;
         gbc.gridy=0;
         interaccion_registro.add(ing_nom_usuario, gbc);
 
         JPasswordField ing_contrasena = new JPasswordField(20);
+        ing_contrasena.setBackground(new Color(123, 197, 105));
+        ing_contrasena.setForeground(Color.black);
         gbc.gridx = 1;
         gbc.gridy=1;
         interaccion_registro.add(ing_contrasena, gbc);
 
         JPasswordField ing_confirm_contrasena = new JPasswordField(20);
+        ing_confirm_contrasena.setBackground(new Color(123, 197, 105));
+        ing_confirm_contrasena.setForeground(Color.black);
         gbc.gridx = 1;
         gbc.gridy=2;
         interaccion_registro.add(ing_confirm_contrasena, gbc);
@@ -243,6 +257,8 @@ public class Vista  extends JFrame{
          * Crear un botón de confirmacion 
          */
         JButton confirmacion = new JButton("Aceptar");
+        confirmacion.setBackground(new Color(36, 123, 160));
+        confirmacion.setForeground(Color.WHITE);
         gbc.gridx=0;
         gbc.gridy=3;
         gbc.gridwidth=2;
