@@ -288,6 +288,7 @@ public class Vista  extends JFrame{
          */
         JFrame principal = new JFrame();
         principal.setTitle("App manejo del tiempo - Principal");
+        principal.setBackground(new Color(246, 221, 176));
         principal.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         principal.setSize(1000, 500);
         principal.setVisible(true);
@@ -310,6 +311,8 @@ public class Vista  extends JFrame{
          * Crear un nuevo panel para poder agregar el calendario
          */
         JPanel dias = new JPanel();
+        dias.setBackground(new Color(246, 221, 176));
+        dias.setLayout(new GridLayout(6, 7));
         dias.setLayout(new GridLayout(6, 7));
 
         /**
@@ -340,17 +343,20 @@ public class Vista  extends JFrame{
          */
         for (int i = 0; i<5; i++){
             JButton botonvacio = new JButton("");
+            botonvacio.setBackground(new Color(208, 153, 131));
             dias.add(botonvacio);
         }
         for(int i = 0; i<30; i++){
             JButton botondia = new JButton("NOV " + (i+1));
             int k = i;
+            botondia.setBackground(new Color(255, 164, 142));
             botondia.addActionListener(new ActionListener(){
                 public void actionPerformed(ActionEvent e){
                     /**
                      * Crear ventana para mostrar las tareas del día y poder agregar nuevas tareas o iniciar un pomodoro
                      */
                     JFrame ventanadia = new JFrame();
+                    ventanadia.setBackground(new Color(246, 247, 235));
                     ventanadia.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                     ventanadia.setSize(300, 200);
                     ventanadia.setVisible(true);
@@ -359,6 +365,7 @@ public class Vista  extends JFrame{
                      * Crear un panel para colocar las tareas del día en un scrollpane
                      */
                     JPanel lista_tareas = new JPanel(new GridBagLayout());
+                    lista_tareas.setBackground(new Color(246, 221, 176));
                     GridBagConstraints gbc = new GridBagConstraints();
                     gbc.insets = new Insets(5, 5, 5, 5); // Márgenes entre componentes
 
@@ -379,17 +386,22 @@ public class Vista  extends JFrame{
                      * Crear un nuevo panel para colocar los botones para agregar tarea e iniciar un nuevo pomodoro
                      */
                     JPanel opciones = new JPanel(new GridBagLayout());
+                    opciones.setBackground(new Color(246, 221, 176));
 
                     /**
                      * Crear las componentes del panel
                      */
                     JButton agregar_tarea = new JButton("Agregar tarea");
+                    agregar_tarea.setBackground(new Color(36, 123, 160));
+                    agregar_tarea.setForeground(Color.WHITE);
                     gbc.gridx = 0;
                     gbc.gridy = 0;
                     agregar_tarea.setPreferredSize(new Dimension(100,25));
                     opciones.add(agregar_tarea, gbc);
 
                     JButton pomodoro =  new JButton("Pomodoro");
+                    pomodoro.setBackground(new Color(36, 123, 160));
+                    pomodoro.setForeground(Color.WHITE);
                     gbc.gridx = 0;
                     gbc.gridy = 1;
                     pomodoro.setPreferredSize(new Dimension(100,25));
@@ -399,9 +411,11 @@ public class Vista  extends JFrame{
                      * Crear un boton para salir
                      */
                     JButton salir = new JButton("Salir");
+                    salir.setBackground(new Color(186, 59, 70));
+                    salir.setForeground(Color.white);
                     gbc.gridx = 0;
                     gbc.gridy = 2;
-                    salir.setPreferredSize(new Dimension(100,25));
+                    salir.setPreferredSize(new Dimension(150,25));
                     opciones.add(salir, gbc);
 
                     /**
@@ -422,6 +436,8 @@ public class Vista  extends JFrame{
                              */
                             JFrame anadir_tarea = new JFrame();
                             anadir_tarea.setTitle("Añadir tarea");
+                            anadir_tarea.setBackground(new Color(246, 221, 176));
+                            anadir_tarea.setForeground(Color.white);
                             anadir_tarea.setSize(600, 300);
                             anadir_tarea.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                             anadir_tarea.setVisible(true);
@@ -430,6 +446,8 @@ public class Vista  extends JFrame{
                              * Crear un nuevo panel para colocar las etiquetas y los campos de texto
                              */
                             JPanel info_tarea = new JPanel();
+                            info_tarea.setBackground(new Color(246, 221, 176));
+                            info_tarea.setForeground(Color.white);
                             info_tarea.setLayout(new GridBagLayout());
                             GridBagConstraints gbc = new GridBagConstraints();
                             gbc.insets = new Insets(5, 5, 5, 5); // Márgenes entre componentes
@@ -454,18 +472,26 @@ public class Vista  extends JFrame{
                             info_tarea.add(detalles, gbc);
 
                             JTextField ing_nombre = new JTextField(20);
+                            ing_nombre.setBackground(new Color(123, 197, 105));
+                            ing_nombre.setForeground(Color.black);
                             gbc.gridx = 1;
                             gbc.gridy = 0;
                             info_tarea.add(ing_nombre, gbc);
                             JTextField ing_prioridad = new JTextField(20);
+                            ing_prioridad.setBackground(new Color(123, 197, 105));
+                            ing_prioridad.setForeground(Color.black);
                             gbc.gridx = 1;
                             gbc.gridy = 1;
                             info_tarea.add(ing_prioridad, gbc);
                             JTextField ing_duracion = new JTextField(20);
+                            ing_duracion.setBackground(new Color(123, 197, 105));
+                            ing_duracion.setForeground(Color.black);
                             gbc.gridx = 1;
                             gbc.gridy = 2;
                             info_tarea.add(ing_duracion, gbc);
                             JTextField ing_detalles = new JTextField(20);
+                            ing_detalles.setBackground(new Color(123, 197, 105));
+                            ing_detalles.setForeground(Color.black);
                             gbc.gridx = 1;
                             gbc.gridy = 3;
                             info_tarea.add(ing_detalles, gbc);
@@ -475,6 +501,8 @@ public class Vista  extends JFrame{
                              * Crear un boton para salir
                              */
                             JButton salir = new JButton("Agregar");
+                            salir.setBackground(new Color(36, 123, 160));
+                            salir.setForeground(Color.white);
                             gbc.gridx = 0;
                             gbc.gridy=4;
                             gbc.gridwidth = 2;
@@ -550,6 +578,8 @@ public class Vista  extends JFrame{
         listas.add(scrollPane3, gbc);
 
         JButton bmedallas = new JButton("Medallas");
+        bmedallas.setBackground(new Color(36, 123, 160));
+        bmedallas.setForeground(Color.WHITE);
         gbc.gridx = 0;
         gbc.gridy = 2;
         bmedallas.setPreferredSize(new Dimension(100, 25));
@@ -559,6 +589,8 @@ public class Vista  extends JFrame{
          * Crear un boton para salir
          */
         JButton salir = new JButton("Salir");
+        salir.setBackground(new Color(186, 59, 70));
+        salir.setForeground(Color.white);
 
         /**
          * Agregar los paneles y el boton a la ventana
@@ -629,6 +661,8 @@ public class Vista  extends JFrame{
          * Crear un boton para salir
          */
         JButton salir = new JButton("Salir");
+        salir.setBackground(new Color(186, 59, 70));
+        salir.setForeground(Color.white);
 
         /**
          * Agregar los paneles y el boton de salir a la ventana
@@ -648,6 +682,7 @@ public class Vista  extends JFrame{
                  * Crear un nueva ventana
                  */
                 JFrame anadir_tarea = new JFrame();
+                anadir_tarea.setBackground(new Color(246, 221, 176));
                 anadir_tarea.setTitle("Añadir tarea");
                 anadir_tarea.setSize(600, 300);
                 anadir_tarea.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -658,6 +693,7 @@ public class Vista  extends JFrame{
                  */
                 JPanel info_tarea = new JPanel();
                 info_tarea.setLayout(new GridLayout(5,2));
+                info_tarea.setBackground(new Color(246, 221, 176));
                 /**
                  * Crear las componentes del panel (etiquetas y campos de texto)
                  */
@@ -688,6 +724,8 @@ public class Vista  extends JFrame{
                  * Crear un boton para salir
                  */
                 JButton salir = new JButton("Agregar");
+                salir.setBackground(new Color(36, 123, 160));
+                salir.setForeground(Color.white);
                 /**
                  * Crear un evento para poder guardar la informacion de las tareas al salir de la ventana 
                  */
@@ -737,6 +775,7 @@ public class Vista  extends JFrame{
          */
         JFrame ventanapomodoro = new JFrame();
         ventanapomodoro.setTitle("Pomodoro");
+        ventanapomodoro.setBackground(new Color(246, 221, 176));
         ventanapomodoro.setSize(350, 200);
         ventanapomodoro.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         ventanapomodoro.setVisible(true);
@@ -745,6 +784,7 @@ public class Vista  extends JFrame{
          * Crear un nuevo panel para colocar la información sobre el pomodoro 
          */
         JPanel mostrar = new JPanel();
+        mostrar.setBackground(new Color(246, 221, 176));
         mostrar.setLayout(new GridLayout(4, 1)); // Cambiar a 4 filas
     
         /** 
@@ -752,6 +792,7 @@ public class Vista  extends JFrame{
          */
         JLabel tiempoLabel = new JLabel("Ingrese el tiempo en minutos:");
         JTextField tiempoField = new JTextField("25"); // Valor por defecto de 25 minutos
+        tiempoField.setBackground(new Color(123,197,105));
     
         /** 
          * Agregar el texto y el campo de entrada al panel 
@@ -762,11 +803,15 @@ public class Vista  extends JFrame{
          * Agregar los ajustes de la barra de progreso 
          */
         JProgressBar barraProgreso = new JProgressBar(0, 100);
+        barraProgreso.setBackground(new Color(160, 186, 168));
+        barraProgreso.setForeground(new Color(211, 115, 123));
         barraProgreso.setValue(0);
         barraProgreso.setStringPainted(true);
         mostrar.add(barraProgreso);
     
         JButton iniciarButton = new JButton("Iniciar Pomodoro");
+        iniciarButton.setBackground(new Color(36, 123, 160));
+        iniciarButton.setForeground(Color.WHITE);
         mostrar.add(iniciarButton);
     
         iniciarButton.addActionListener(new ActionListener() {
@@ -806,6 +851,7 @@ public class Vista  extends JFrame{
     public void ventana_medallas() {
         // Crear la ventana
         JFrame ventanaMedallas = new JFrame("Medallas de Racha");
+        ventanaMedallas.setBackground(new Color(123,197,105));
         ventanaMedallas.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         ventanaMedallas.setSize(400, 300);
         ventanaMedallas.setLayout(new BorderLayout());
@@ -834,6 +880,8 @@ public class Vista  extends JFrame{
         ventanaMedallas.add(new JScrollPane(panelMedallas), BorderLayout.CENTER);
 
         JButton botonSalir = new JButton("Salir");
+        botonSalir.setBackground(new Color(186, 59, 70));
+        botonSalir.setForeground(Color.white);
         botonSalir.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 ventanaMedallas.dispose(); 
