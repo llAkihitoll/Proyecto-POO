@@ -3,6 +3,10 @@
 */
 import java.util.ArrayList;
 import java.util.List;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 /*
  * Clase que representa un Usuario.
  * Cada usuario tiene: Nombre, número de días de racha, una lista de tareas y una lista de badges.
@@ -150,5 +154,41 @@ public Usuario() {
             }
         }
         return lista;
+    }
+/**
+ * Iniciar sesion
+ * @param nombreUsuario
+ * @param claveusuario
+ */
+    public static boolean iniciarSesion(String nombreUsuario, String claveusuario) {
+        String sql = "SELECT * FROM usuarios WHERE nombreUsuario = ? AND claveusuario = ?";
+        try (Connection conn = ConexionBaseDeDatos.conectar();
+            PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, nombreUsuario);
+            pstmt.setString(2, claveusuario);
+            ResultSet rs = pstmt.executeQuery();
+            return rs.next();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+/**
+ * Registrar un usuario
+ * @param nombreUsuario
+ * @param claveusuario
+ */
+    public boolean registrarUsuario() {
+        String sql = "INSERT INTO usuarios (nombreUsuario, claveusuario) VALUES (?, ?)";
+        try (Connection conn = ConexionBaseDeDatos.conectar();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, nombreUsuario);
+            pstmt.setString(2, claveusuario);
+            pstmt.executeUpdate();
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 }

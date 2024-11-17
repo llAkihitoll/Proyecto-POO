@@ -9,7 +9,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 public class Vista  extends JFrame{
-    private Aplicacion app ;
+    private Aplicacion app;
     private JFrame ingreso, inicio_sesion, registro;
     private JPanel interaccion_ingreso, interaccion_inicio_sesion, interaccion_registro;
     private JButton iniciar_sesion, registrarse;
