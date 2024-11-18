@@ -5,6 +5,11 @@
  * 
  * @author Javier Chávez
  */
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
 public class Tarea {
     /**
      * Nombre de la tarea
@@ -126,4 +131,31 @@ public class Tarea {
         public String getDetalles() {
             return detalles;
         }
+    /**
+     * Guarda la tarea en la base de datos.
+     *
+     * @param idUsuario ID del usuario al que pertenece la tarea.
+     * @return true si la tarea se guardó correctamente, false en caso contrario.
+     */
+    public boolean guardarTarea(int idUsuario) {
+        String sql = "INSERT INTO tareas (id_usuario, descripcion, estado, fecha_inicio, fecha_fin) " +
+                     "VALUES (?, ?, ?, ?, ?)";
+
+        try (Connection conn = ConexionBaseDeDatos.conectar();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setInt(1, idUsuario); // ID del usuario
+            pstmt.setString(2, this.nombreTarea); // Descripción de la tarea (puedes combinar nombre y detalles si lo prefieres)
+            pstmt.setString(3, this.completado ? "completada" : "pendiente"); // Estado de la tarea
+            pstmt.setTimestamp(4, java.sql.Timestamp.valueOf(java.time.LocalDateTime.now())); // Fecha de inicio
+            pstmt.setTimestamp(5, null); // Fecha de fin, por defecto null
+
+            pstmt.executeUpdate();
+            return true;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
     }

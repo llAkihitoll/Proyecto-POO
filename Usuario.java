@@ -163,7 +163,7 @@ public Usuario(String nombre, String clave) {
  * @param claveusuario
  */
     public static boolean iniciarSesion(String nombreUsuario, String claveusuario) {
-        String sql = "SELECT * FROM usuarios WHERE nombreUsuario = ? AND claveusuario = ?";
+        String sql = "SELECT * FROM usuarios WHERE nombre = ? AND contrasena = ?";
         try (Connection conn = ConexionBaseDeDatos.conectar();
             PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1, nombreUsuario);
@@ -181,7 +181,7 @@ public Usuario(String nombre, String clave) {
  * @param claveusuario
  */
     public boolean registrarUsuario() {
-        String sql = "INSERT INTO usuarios (nombreUsuario, claveusuario) VALUES (?, ?)";
+        String sql = "INSERT INTO usuarios (nombre, contrasena) VALUES (?, ?)";
         try (Connection conn = ConexionBaseDeDatos.conectar();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1, nombreUsuario);
@@ -205,7 +205,7 @@ public static boolean verificarInicioSesion(String nombreUsuario, String claveus
         throw new IllegalArgumentException("El nombre de usuario y la contraseña no deben estar vacíos.");
     }
 
-    String sql = "SELECT * FROM usuarios WHERE nombreUsuario = ? AND claveusuario = ?";
+    String sql = "SELECT * FROM usuarios WHERE nombre = ? AND contrasena = ?";
     try (Connection conn = ConexionBaseDeDatos.conectar();
          PreparedStatement pstmt = conn.prepareStatement(sql)) {
          
