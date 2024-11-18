@@ -191,4 +191,30 @@ public Usuario() {
             return false;
         }
     }
+/**
+ * Verifica la información de inicio de sesión del usuario.
+ *
+ * @param nombreUsuario El nombre de usuario.
+ * @param claveusuario La contraseña del usuario.
+ * @return true si las credenciales son válidas, de lo contrario false.
+ */
+public static boolean verificarInicioSesion(String nombreUsuario, String claveusuario) {
+    if (nombreUsuario == null || claveusuario == null || nombreUsuario.isEmpty() || claveusuario.isEmpty()) {
+        throw new IllegalArgumentException("El nombre de usuario y la contraseña no deben estar vacíos.");
+    }
+
+    String sql = "SELECT * FROM usuarios WHERE nombreUsuario = ? AND claveusuario = ?";
+    try (Connection conn = ConexionBaseDeDatos.conectar();
+         PreparedStatement pstmt = conn.prepareStatement(sql)) {
+         
+        pstmt.setString(1, nombreUsuario);
+        pstmt.setString(2, claveusuario);
+        try (ResultSet rs = pstmt.executeQuery()) {
+            return rs.next(); // Si hay un resultado, las credenciales son válidas
+        }
+    } catch (SQLException e) {
+        System.err.println("Error al verificar el inicio de sesión: " + e.getMessage());
+        return false;
+    }
+}
 }
