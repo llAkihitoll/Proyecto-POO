@@ -27,6 +27,12 @@ public class Vista  extends JFrame{
         ingreso.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         ingreso.setSize(450,600);
 
+        JTextField ing_nom_usuario = new JTextField(20);
+        ing_nom_usuario.setBackground(new Color(123, 197, 105));
+        
+        JPasswordField ing_contrasena = new JPasswordField(20);
+        ing_contrasena.setBackground(new Color(123, 197, 105));
+
         /**
          * Crear un nuevo panel para poder agregar el texto para comunicarse con el usuario y los botones para que decida que hacer
          */
