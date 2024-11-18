@@ -15,7 +15,7 @@ public class Aplicacion {
      * Metodo "constructor" de la clase, se utilizará para acceder a todos los métodos desde el main
      */
     public Aplicacion(){
-        usuarioactual = new Usuario();
+        usuarioactual = new Usuario("","");
 
     }
 
@@ -155,7 +155,7 @@ public class Aplicacion {
     }
 
     public void buscarUsuario(String nombre){
-        Usuario us = new Usuario();
+        Usuario us = new Usuario("","");
         nombre = nombre.toLowerCase();
         for(Usuario i : usuarios){
             if(nombre.equals(i.getNombreUsuario().toLowerCase())){

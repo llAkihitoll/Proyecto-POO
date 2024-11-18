@@ -188,9 +188,16 @@ public class Vista  extends JFrame{
         inicio_sesion.add(interaccion_inicio_sesion, BorderLayout.CENTER);
 
         confirmacion.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e){
-                ventana_principal();
-                inicio_sesion.dispose();
+            public void actionPerformed(ActionEvent e) {
+                String nombreUsuario = ing_nom_usuario.getText();
+                String claveUsuario = new String(ing_contrasena.getPassword());
+
+                if (Usuario.verificarInicioSesion(nombreUsuario, claveUsuario)) {
+                    ventana_principal();;
+                    inicio_sesion.dispose();
+                } else {
+                    JOptionPane.showMessageDialog(null, "Nombre de usuario o contraseña incorrectos.", "Error", JOptionPane.ERROR_MESSAGE);
+                }
             }
         });
 
@@ -279,11 +286,24 @@ public class Vista  extends JFrame{
         registro.add(interaccion_registro);
 
         confirmacion.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e){
-                
-                ventana_principal();
-                registro.dispose();
-                app.AgregarUsuario(ing_nom_usuario.getText());
+            public void actionPerformed(ActionEvent e) {
+                String nombreUsuario = ing_nom_usuario.getText();
+                String claveUsuario = new String(ing_contrasena.getPassword());
+
+                if (nombreUsuario.isEmpty() || claveUsuario.isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "Debe completar todos los campos.", "Error", JOptionPane.WARNING_MESSAGE);
+                } else if (claveUsuario.length() < 8) {
+                    JOptionPane.showMessageDialog(null, "La contraseña debe tener al menos 8 caracteres.", "Error", JOptionPane.WARNING_MESSAGE);
+                } else {
+                    Usuario nuevoUsuario = new Usuario(nombreUsuario, claveUsuario);
+
+                    if (nuevoUsuario.registrarUsuario()) {
+                        ventana_principal();
+                        registro.dispose();
+                    } else {
+                        JOptionPane.showMessageDialog(null, "No se pudo registrar el usuario. Inténtelo de nuevo.", "Error", JOptionPane.ERROR_MESSAGE);
+                    }
+                }
             }
         });
     }

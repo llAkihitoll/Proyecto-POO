@@ -39,11 +39,13 @@ public class Usuario {
 /**
  * Crea un usuario sin nombre ni dias de racha.
  */
-public Usuario() {
+public Usuario(String nombre, String clave) {
     List<ArrayList<Tarea>> lista = new ArrayList<>();
     for (int i = 0; i < 31; i++) {
         lista.add(new ArrayList<Tarea>());
     }
+    this.nombreUsuario = nombre;
+    this.claveusuario = clave;
     this.rachaDeDias = 0;
     this.tareas = lista;
     this.badges = new ArrayList<>();
