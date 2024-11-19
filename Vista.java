@@ -384,7 +384,7 @@ public class Vista  extends JFrame{
                     JFrame ventanadia = new JFrame();
                     ventanadia.setBackground(new Color(246, 247, 235));
                     ventanadia.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                    ventanadia.setSize(300, 200);
+                    ventanadia.setSize(400, 300);
                     ventanadia.setVisible(true);
 
                     /**
@@ -401,12 +401,24 @@ public class Vista  extends JFrame{
                     String[] tareas = app.getUsuario().nomyprioridad().get(k).toArray(new String[0]);
                     JList<String> usuario_tareas = new JList<>(tareas);
                     JScrollPane scrollPane1 = new JScrollPane(usuario_tareas);
-                    scrollPane1.setPreferredSize(new Dimension(90,120));
+                    scrollPane1.setPreferredSize(new Dimension(120,180));
 
                     /**
                      * Agregar la lista al panel
                      */
                     lista_tareas.add(scrollPane1);
+                     usuario_tareas.addMouseListener(new MouseAdapter() {
+                        public void mouseClicked(MouseEvent e) {
+                            if (e.getClickCount() == 2) { // Doble clic
+                                int index = usuario_tareas.locationToIndex(e.getPoint());
+                                if (index != -1) {
+                                    String tareaSeleccionada = usuario_tareas.getModel().getElementAt(index);
+                                    mostrarDialogoConfirmacion(usuario_tareas, index, tareaSeleccionada, k);
+                                }
+                            }
+                        }
+                    });
+
 
                     /**
                      * Crear un nuevo panel para colocar los botones para agregar tarea e iniciar un nuevo pomodoro
@@ -422,7 +434,7 @@ public class Vista  extends JFrame{
                     agregar_tarea.setForeground(Color.WHITE);
                     gbc.gridx = 0;
                     gbc.gridy = 0;
-                    agregar_tarea.setPreferredSize(new Dimension(100,25));
+                    agregar_tarea.setPreferredSize(new Dimension(150,25));
                     opciones.add(agregar_tarea, gbc);
 
                     JButton pomodoro =  new JButton("Pomodoro");
@@ -430,7 +442,7 @@ public class Vista  extends JFrame{
                     pomodoro.setForeground(Color.WHITE);
                     gbc.gridx = 0;
                     gbc.gridy = 1;
-                    pomodoro.setPreferredSize(new Dimension(100,25));
+                    pomodoro.setPreferredSize(new Dimension(150,25));
                     opciones.add(pomodoro, gbc);
                     
                     /**
@@ -488,7 +500,7 @@ public class Vista  extends JFrame{
                             gbc.gridx = 0;
                             gbc.gridy = 1;
                             info_tarea.add(prioridad, gbc);
-                            JLabel duracion = new JLabel("Ingrese la duracion de la tarea");
+                            JLabel duracion = new JLabel("Ingrese la duracion de la tarea en minutos");
                             gbc.gridx = 0;
                             gbc.gridy = 2;
                             info_tarea.add(duracion, gbc);
@@ -586,11 +598,13 @@ public class Vista  extends JFrame{
          * Crear otro panel para poder tener la lista de tareas proximas, medallas y el boton de medallas
          */
         JPanel listas = new JPanel(new GridBagLayout());
+        listas.setBackground(new Color(246, 221, 176));
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(5, 5, 5, 5); // Márgenes entre componentes
         
         JList<String> lista_tareas2 = new JList<>(modelolista);
         JScrollPane scrollPane2 = new JScrollPane(lista_tareas2);
+        scrollPane2.setBackground(new Color(246, 221, 176));
         gbc.gridx = 0;
         gbc.gridy = 0;
         scrollPane2.setPreferredSize(new Dimension(250, 150));
@@ -598,6 +612,7 @@ public class Vista  extends JFrame{
 
         JList<String> lista_medallas = new JList<>(modelolista2);
         JScrollPane scrollPane3 = new JScrollPane(lista_medallas);
+        scrollPane3.setBackground(new Color(246, 221, 176));
         gbc.gridx = 0;
         gbc.gridy = 1;
         scrollPane3.setPreferredSize(new Dimension(250, 150));
@@ -645,6 +660,7 @@ public class Vista  extends JFrame{
          */
         JFrame ventanadia = new JFrame();
         ventanadia.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        ventanadia.setBackground(new Color(246, 221, 176));
         ventanadia.setSize(300, 200);
         ventanadia.setVisible(true);
 
@@ -652,6 +668,7 @@ public class Vista  extends JFrame{
          * Crear un panel para colocar las tareas del día en un scrollpane
          */
         JPanel lista_tareas = new JPanel();
+        lista_tareas.setBackground(new Color(246, 221, 176));
 
         /**
          * Crear la componente del panel que será una lista
@@ -669,6 +686,7 @@ public class Vista  extends JFrame{
          * Crear un nuevo panel para colocar los botones para agregar tarea e iniciar un nuevo pomodoro
          */
         JPanel opciones = new JPanel();
+        opciones.setBackground(new Color(246, 221, 176));
         opciones.setLayout(new GridLayout(2, 1));
 
         /**
@@ -711,7 +729,7 @@ public class Vista  extends JFrame{
                 anadir_tarea.setBackground(new Color(246, 221, 176));
                 anadir_tarea.setTitle("Añadir tarea");
                 anadir_tarea.setSize(600, 300);
-                anadir_tarea.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                anadir_tarea.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                 anadir_tarea.setVisible(true);
 
                 /**
@@ -725,7 +743,7 @@ public class Vista  extends JFrame{
                  */
                 JLabel nombre = new JLabel("Ingrese el nombre de la tarea");
                 JLabel prioridad = new JLabel("Ingrese la prioridad de la tarea (Del 1 al 3 siendo el maximo)");
-                JLabel duracion = new JLabel("Ingrese la duracion de la tarea");
+                JLabel duracion = new JLabel("Ingrese la duracion de la tarea en minutos");
                 JLabel detalles = new JLabel("Ingrese los detalles de la tarea");
 
                 JTextField ing_nombre = new JTextField(20);
@@ -803,7 +821,7 @@ public class Vista  extends JFrame{
         ventanapomodoro.setTitle("Pomodoro");
         ventanapomodoro.setBackground(new Color(246, 221, 176));
         ventanapomodoro.setSize(350, 200);
-        ventanapomodoro.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        ventanapomodoro.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         ventanapomodoro.setVisible(true);
     
         /** 
@@ -877,7 +895,7 @@ public class Vista  extends JFrame{
     public void ventana_medallas() {
         // Crear la ventana
         JFrame ventanaMedallas = new JFrame("Medallas de Racha");
-        ventanaMedallas.setBackground(new Color(123,197,105));
+        ventanaMedallas.setBackground(new Color(246, 221, 176));
         ventanaMedallas.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         ventanaMedallas.setSize(400, 300);
         ventanaMedallas.setLayout(new BorderLayout());
@@ -885,6 +903,7 @@ public class Vista  extends JFrame{
         // Crear un panel para la lista de medallas
         JPanel panelMedallas = new JPanel();
         panelMedallas.setLayout(new BoxLayout(panelMedallas, BoxLayout.Y_AXIS));
+        panelMedallas.setBackground(new Color(246, 221, 176));
 
         // Crear etiquetas con nombres creativos de medallas y añadirlas al panel
         JLabel medalla1 = new JLabel("🥉 Novato Consistente - 3 días de racha");
@@ -919,6 +938,32 @@ public class Vista  extends JFrame{
 
         // Mostrar la ventana
         ventanaMedallas.setVisible(true);
+    }
+        private void mostrarDialogoConfirmacion(JList<String> usuario_tareas, int index, String tarea, int dia) {
+        int resultado = JOptionPane.showConfirmDialog(this, 
+            "¿Desea marcar como completada: \"" + tarea + "\"?", 
+            "Completar Tarea", 
+            JOptionPane.YES_NO_OPTION);
+
+        if (resultado == JOptionPane.YES_OPTION) {
+            DefaultListModel<String> modelo = new DefaultListModel<>();
+            for (int i = 0; i < usuario_tareas.getModel().getSize(); i++) {
+                if (i != index) { // Excluye el elemento que se va a eliminar
+                    app.getUsuario().nomyprioridad().get(dia).remove(index);
+                    modelo.addElement(usuario_tareas.getModel().getElementAt(i));
+                }
+
+            }
+
+            usuario_tareas.setModel(modelo); // Actualiza el modelo de la lista
+        }
+        if (resultado == JOptionPane.YES_OPTION) {
+            // Eliminar la tarea de la lista visual
+            modelolista.remove(index+1);
+            
+            // También eliminar la tarea de la lista interna de app
+            
+        }
     }
 
 
